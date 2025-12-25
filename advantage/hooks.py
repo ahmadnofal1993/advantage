@@ -63,7 +63,17 @@ app_license = "mit"
 # role_home_page = {
 # 	"Role": "home_page"
 # }
+permission_query_conditions = {
+	"Task": "advantage.utils.get_permission_query_conditions",	
+}
 
+has_permission = {
+ 	"Task": "advantage.utils.has_permission",
+	
+ }
+override_doctype_class = {
+	"Contact": "advantage.override.contact.AdvantageContact",
+}
 # Generators
 # ----------
 

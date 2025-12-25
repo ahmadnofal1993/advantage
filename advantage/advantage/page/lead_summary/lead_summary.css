@@ -1,0 +1,396 @@
+:root {
+    --gray-50: #e5e7eb; /* Fallback for missing variable */
+    --neutral-white: #FFFFFF;
+}
+
+    /* Target the specific container for this page */
+    .layout-main-section-wrapper {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Remove padding from the standard container */
+    .container {
+        max-width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Make your content full height/width */
+    .my-full-screen-div {
+        width: 100vw;
+        height: 100vh; /* Optional: if you want it to take exact screen height */
+        background-color: white;
+    }
+    :root {
+        --gray-50: #e5e7eb; /* Fallback for missing variable */
+        --neutral-white: #FFFFFF;
+    }
+    
+    .fb-895ed5b1 { align-items: center;display: flex;flex-direction: column;flex-shrink: 0;flex-wrap: wrap;position: relative; }
+    .fb-30decc6d { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;flex-wrap: wrap; }
+    .fb-107e4b8f { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;flex-grow: 0;max-width: 20%;padding-top: 20px;padding-right: 0px;padding-bottom: 20px;padding-left: 15px;width: 100%; }
+    .fb-107e4b8f { flex-basis: 20%; }
+    .fb-a3f3a3a5 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px; }
+    .fb-b4cbd424 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-a959dda2 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative;gap: 4px; }
+    .fb-c237e021 { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-a0334bc5 { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-7bfea1a3 { align-items: center;border-radius: 50px;display: flex;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-7bfea1a3 { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-7bfea1a3:hover { background: #383838; }
+    .fb-e62e8bdd { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-2f8590f1 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-43caced1 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-8df6c5e5 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-95af8736 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-3e784a74 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #b52a2a;font-weight: 600; }
+    .fb-11c87277 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-c61f4ae4 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-40077fc2 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-6ad898b8 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-00170bbc { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-a0faa9b2 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-932ad31b { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-2a96dade { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-end;align-items: center; }
+    .fb-91b14991 { font-size: 11px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #3265e6; }
+    .fb-a7b8745b { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px; }
+    .fb-db138e37 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-b3d60d50 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative;gap: 4px; }
+    .fb-8d4b3fed { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-f4e58b89 { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-cbc2077d { align-items: center;border-radius: 50px;display: flex;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-cbc2077d { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-cbc2077d:hover { background: #383838; }
+    .fb-42ca90cf { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-689f34ae { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-829b0b71 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-1cdcfa15 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-ae1e12fa { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-1d773368 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #b52a2a;font-weight: 600; }
+    .fb-77fc55f7 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-14c74560 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-1c8d7abb { display: none;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-5b9dd325 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-0bb3fa5b { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-4d759ecb { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-a528869c { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #b52a2a;font-weight: 600; }
+    .fb-517c321b { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-e9576814 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-4c948d4c { display: none;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-5bb0fe41 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-d5e1681f { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-296b9726 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-04e743b9 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #838383;font-weight: 600; }
+    .fb-9fbaec8b { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-b0186394 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-174c4117 { display: none;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-2bd15736 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-b2fabeef { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-4f23b7f0 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-3e37dffe { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #16794c;font-weight: 600; }
+    .fb-6c390674 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-e9679b5d { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-11d41814 { display: none;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-8deff920 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-a5029955 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-08817604 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-15e289d9 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-66ed909b { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-end;align-items: center; }
+    .fb-21b9140d { font-size: 11px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #3265e6; }
+    .fb-ce6203f3 { display: none;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px; }
+    .fb-a595a8ba { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-e2665b0a { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative;gap: 4px; }
+    .fb-d9d0f830 { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-5646ff6e { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-dbcc6bd7 { align-items: center;border-radius: 50px;display: flex;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-dbcc6bd7 { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-dbcc6bd7:hover { background: #383838; }
+    .fb-c9ee86ae { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-20365393 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-042a7136 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-10740783 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-658294aa { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-c8be8bdf { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-1b7e7753 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091; }
+    .fb-e8d52b54 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-7e9b5aaf { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-51424060 { display: flex;flex-direction: column;flex-shrink: 0;gap: 15px;left: auto;max-width: 100%;overflow: hidden;padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top: 20px;position: static;top: auto;height: 100%;width: 100%;flex-wrap: wrap;flex-grow: 1; }
+    .fb-51424060 { flex-basis: 0; }
+    .fb-da1e832e { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;border-width: 1px;border-style: solid;border-color: #c9c9c9;border-radius: 10px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-78f7fdcd { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #c9c9c9;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 5px;justify-content: space-between; }
+    .fb-f150e1fc { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative; }
+    .fb-043ccd82 { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;width: fit-content;height: fit-content;overflow-x: hidden;overflow-y: hidden; }
+    .fb-39a07120 { align-items: center;display: flex;flex-direction: column;height: fit-content;justify-content: center;width: fit-content;margin-top: 0px;margin-bottom: 0px;margin-left: 15px;margin-right: 15px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #131313;padding-top: 15px;padding-bottom: 15px;padding-left: 0px;padding-right: 0px; }
+    .fb-39a07120 { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-39a07120:hover { background: #383838; }
+    .fb-0160de91 { color: #525252;font-size: 14px;font-weight: 600;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;min-width: 30px;position: static;top: auto;width: fit-content; }
+    .fb-45e12876 { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;width: fit-content;height: fit-content;overflow-x: hidden;overflow-y: hidden; }
+    .fb-4c648d3c { align-items: center;display: flex;flex-direction: row;height: fit-content;justify-content: center;width: fit-content;margin-top: 0px;margin-bottom: 0px;margin-left: 15px;margin-right: 15px;padding-top: 15px;padding-bottom: 15px;padding-left: 0px;padding-right: 0px;position: relative;gap: 4px; }
+    .fb-4c648d3c { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-4c648d3c:hover { background: #383838; }
+    .fb-aef20441 { color: #8c8c8c;font-size: 14px;font-weight: 500;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;min-width: 30px;position: static;top: auto;width: fit-content; }
+    .fb-f0bc4576 { color: #8c8c8c;font-size: 12px;font-weight: 400;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-9e83cf3d { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;width: fit-content;height: fit-content;overflow-x: hidden;overflow-y: hidden; }
+    .fb-bf248cda { align-items: center;display: flex;flex-direction: row;height: fit-content;justify-content: center;width: fit-content;margin-top: 0px;margin-bottom: 0px;margin-left: 15px;margin-right: 15px;padding-top: 15px;padding-bottom: 15px;padding-left: 0px;padding-right: 0px;position: relative;gap: 4px; }
+    .fb-bf248cda { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-bf248cda:hover { background: #383838; }
+    .fb-a2b010fc { color: #8c8c8c;font-size: 14px;font-weight: 500;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;min-width: 30px;position: static;top: auto;width: fit-content; }
+    .fb-a2938e19 { color: #8c8c8c;font-size: 12px;font-weight: 400;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content;display: flex; }
+    .fb-2f1916d6 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 20px;padding-right: 20px;justify-content: space-between;align-items: center; }
+    .fb-c04a4073 { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;width: fit-content;height: fit-content;overflow-x: hidden;overflow-y: hidden; }
+    .fb-d986dc58 { align-items: center;display: flex;flex-direction: column;height: fit-content;justify-content: center;width: fit-content;padding-top: 15px;padding-bottom: 15px;padding-left: 0px;padding-right: 0px; }
+    .fb-d986dc58 { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-3605539c { color: #525252;font-size: 13px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;min-width: 30px;position: static;top: auto;width: fit-content; }
+    .fb-56f98748 { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;width: fit-content;height: fit-content;overflow-x: hidden;overflow-y: hidden; }
+    .fb-9729eb4d { align-items: center;display: flex;flex-direction: column;height: fit-content;justify-content: center;width: fit-content;margin-top: 0px;margin-bottom: 0px;margin-left: 10px;margin-right: 10px; }
+    .fb-9729eb4d { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-18c2c83d { color: #b52a2a;font-size: 13px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;min-width: 30px;position: static;top: auto;width: fit-content;background-color: #fff0f0;padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;border-radius: 8px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-a24b1928 { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;width: fit-content;height: fit-content;overflow-x: hidden;overflow-y: hidden; }
+    .fb-4609a311 { align-items: center;display: flex;flex-direction: column;height: fit-content;justify-content: center;width: fit-content;margin-top: 0px;margin-bottom: 0px;margin-left: 10px;margin-right: 10px; }
+    .fb-4609a311 { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-d3e94c22 { color: #525252;font-size: 13px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;min-width: 30px;position: static;top: auto;width: fit-content;background-color: #f3f3f3;padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;border-radius: 8px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-efc997d3 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #c9c9c9; }
+    .fb-4a92e665 { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;background-color: #fffcef;width: 100%;height: fit-content;border-radius: 4px;overflow-x: hidden;overflow-y: hidden;padding: 10px; }
+    .fb-698dc3f3 { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838; }
+    .fb-e9036d47 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #c9c9c9; }
+    .fb-900ca232 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: flex-start;align-items: flex-start;padding-top: 6px;padding-bottom: 6px;padding-left: 15px;padding-right: 15px;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-065b3a8e { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-425bfe1c { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-bff67a31 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 15px;padding-right: 15px; }
+    .fb-bff67a31 { width: 33.33333333%; }
+    .fb-30b46b40 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-4b946f7e { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-c4368707 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-e388161b { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091; }
+    .fb-29bdbafd { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-e5288dda { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-2d1dd108 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 15px;padding-right: 15px; }
+    .fb-2d1dd108 { width: 33.33333333%; }
+    .fb-cdd4c7c6 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-a97636bb { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-e61bf865 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-8b4be30b { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091;display: none; }
+    .fb-82666573 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-2b0385de { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-e6dbbe49 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 15px;padding-right: 15px; }
+    .fb-e6dbbe49 { width: 33.33333333%; }
+    .fb-8a5ba559 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-9e0e48aa { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-36d05fe7 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-685cc02c { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091;display: none; }
+    .fb-1661cbeb { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-b1a8393d { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f8f8f8;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-d56d3a08 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #c9c9c9; }
+    .fb-94298463 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: flex-start;align-items: flex-start;padding-top: 6px;padding-bottom: 6px;padding-left: 15px;padding-right: 15px;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-383625e1 { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-dfacc37c { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-fa00681b { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 15px;padding-right: 15px; }
+    .fb-fa00681b { width: 33.33333333%; }
+    .fb-8d659bd1 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-6581b7fb { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-58c84d80 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-a357acca { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091;display: none; }
+    .fb-0fcd3709 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-d89951ff { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f8f8f8;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-0743ddb9 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-502709e7 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-a3df233f { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-de582444 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091; }
+    .fb-d1769945 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-cb8e6eb4 { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-fb0b0128 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-701a2b81 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-c5ef4b3e { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-5140792e { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091; }
+    .fb-3e455ba8 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-d9da19c1 { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-f9b26d32 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 15px;padding-right: 15px; }
+    .fb-f9b26d32 { width: 33.33333333%; }
+    .fb-219ed8e6 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-ed03e625 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px; }
+    .fb-597870da { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-12ab51e5 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-dfdf1e3e { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-21aa196e { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-e68d6aca { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px; }
+    .fb-83a3fa18 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-dd946972 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-a5997953 { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-1b6a8135 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-3ccd61a1 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px; }
+    .fb-4fdf5114 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-032b1a20 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-c32e11a5 { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-dcca5611 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 15px;padding-right: 15px; }
+    .fb-dcca5611 { width: 33.33333333%; }
+    .fb-0318ae89 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-df36de8d { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px; }
+    .fb-5c1deaee { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-52a25bdb { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-3a4bd6b4 { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-8d9d2614 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-29d3aed7 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px; }
+    .fb-fc229a97 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-f2edc1aa { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-b0f13176 { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-fb48d113 { border-color: #c9c9c9;border-radius: 4px;border-style: solid;border-width: 1px;display: none;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 150px;left: auto;overflow: hidden;position: static;top: auto;width: 100%; }
+    .fb-491a0fcb { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px;border-radius: 10px;overflow-x: hidden;overflow-y: hidden;border-width: 1px;border-style: solid;border-color: #c9c9c9; }
+    .fb-8c3d1927 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-9afef676 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative; }
+    .fb-738b64d4 { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-eaf418d8 { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-7bf1ccc5 { align-items: center;border-radius: 50px;display: none;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-7bf1ccc5 { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-7bf1ccc5:hover { background: #383838; }
+    .fb-5f1affc0 { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-ab45a9a0 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-5571d4cb { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-070b0315 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;justify-content: space-between; }
+    .fb-bbe646e0 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 20%;overflow: hidden;position: relative;gap: 4px;justify-content: flex-start;align-items: flex-start;margin-top: 0px;margin-right: 0px;margin-bottom: 4px;margin-left: 0px;padding-top: 0px;padding-bottom: 0px;padding-left: 4px;padding-right: 4px; }
+    .fb-aec46612 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-3f9c9b9e { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #ab6e05;font-weight: 600; }
+    .fb-7fd29af9 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 58%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-start;align-items: flex-start; }
+    .fb-d4575056 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: space-between;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px; }
+    .fb-be6ec4dd { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 40%;overflow: hidden;position: relative; }
+    .fb-6d0da02b { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-ab4eb108 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 30%;overflow: hidden;position: relative; }
+    .fb-90b63df5 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-023c1dcd { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 30%;overflow: hidden;position: relative; }
+    .fb-cc40cf84 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-64363395 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 20%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px; }
+    .fb-92144b86 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-10afbd2b { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;justify-content: space-between; }
+    .fb-896b150f { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 20%;overflow: hidden;position: relative;gap: 4px;justify-content: flex-start;align-items: flex-start;margin-top: 0px;margin-right: 0px;margin-bottom: 4px;margin-left: 0px;padding-top: 0px;padding-bottom: 0px;padding-left: 4px;padding-right: 4px; }
+    .fb-cb3d46c3 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-4cadcad0 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #16794c;font-weight: 600; }
+    .fb-7d042c99 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 58%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-start;align-items: flex-start; }
+    .fb-41a1f193 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: space-between;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px; }
+    .fb-4b91f0a7 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 40%;overflow: hidden;position: relative; }
+    .fb-be0a7aee { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-9ccdb595 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 30%;overflow: hidden;position: relative; }
+    .fb-a1c97e71 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-26b6cd0c { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 30%;overflow: hidden;position: relative; }
+    .fb-1b3844c6 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-935f0df5 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: space-between;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px; }
+    .fb-5ddd1434 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 40%;overflow: hidden;position: relative; }
+    .fb-3fb0016e { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-b384eb7c { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 30%;overflow: hidden;position: relative; }
+    .fb-3d0c756b { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #b52a2a;font-weight: 600; }
+    .fb-1c21cd72 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 30%;overflow: hidden;position: relative; }
+    .fb-484a0322 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-1d63006e { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 20%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px; }
+    .fb-fa571309 { font-size: 13px;width: 100%;height: fit-content;line-height: 1.4;min-width: auto;position: static;color: #525252; }
+    .fb-5ccfde4a { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-209999dc { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-636777c9 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-e1bd297c { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-end;align-items: center; }
+    .fb-b8b0cc09 { font-size: 11px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #3265e6; }
+    .fb-9c7856aa { align-items: center;border-radius: 4px;display: none;flex-direction: column;height: fit-content;justify-content: flex-start;padding: 6px 8px;width: 100%;background-color: #171717; }
+    .fb-9c7856aa { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-9c7856aa:hover { background: #383838; }
+    .fb-70eac6e5 { color: var(--neutral-white, #FFF);font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;min-width: 30px;position: static;top: auto;width: fit-content; }
+    .fb-d577b239 { display: flex;flex-direction: column;flex-shrink: 0;overflow: hidden;position: static;flex-grow: 0;max-width: 20%;width: 100%;padding-top: 20px;padding-right: 15px;padding-bottom: 20px;padding-left: 0px; }
+    .fb-d577b239 { flex-basis: 20%; }
+    .fb-821b5949 { display: none;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px; }
+    .fb-0253ace8 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-48af16c9 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative;gap: 4px; }
+    .fb-b267535e { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-1979c462 { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-1258fbbe { align-items: center;border-radius: 50px;display: flex;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-1258fbbe { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-1258fbbe:hover { background: #383838; }
+    .fb-2e5d777b { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-f099187e { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-c09bcdfc { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-f467b165 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-3e7e152a { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-1d68fb3a { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #b52a2a;font-weight: 600; }
+    .fb-1ee8efc6 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-54b835ba { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-cc0004e0 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-47ae1ce1 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-9c01c36c { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-200f205d { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-dd36b13c { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-e41c6f72 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-end;align-items: center; }
+    .fb-7188ba0e { font-size: 11px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #3265e6; }
+    .fb-340f6259 { display: none;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px; }
+    .fb-100cec53 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-03dad46c { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative;gap: 4px; }
+    .fb-bf0d42f7 { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-9e28d437 { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-bca1d26d { align-items: center;border-radius: 50px;display: flex;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-bca1d26d { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-bca1d26d:hover { background: #383838; }
+    .fb-672fef23 { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-7ffd2eb8 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-20774b0f { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-865b265f { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-b9d7747a { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px; }
+    .fb-2bf34339 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-d69c36c6 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #eb9091; }
+    .fb-c380db05 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative; }
+    .fb-d0f7897b { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
+    .fb-537baa07 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px; }
+    .fb-dda95cc3 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-ba8837f1 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative; }
+    .fb-b6930bf9 { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-c18ef86e { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-784ff766 { align-items: center;border-radius: 50px;display: flex;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-784ff766 { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-784ff766:hover { background: #383838; }
+    .fb-f104edec { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-acfcb493 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-824f9372 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-ca3cbe3b { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-1bfe7b64 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-5b133601 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #b52a2a;font-weight: 600; }
+    .fb-be21d0c8 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-325ebf66 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-7d22ea11 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-aa3d5ab0 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-9c04a350 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-2eeb4e4c { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-1bac1a04 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #16794c;font-weight: 600; }
+    .fb-efd1f484 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-4e5dc648 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-c713c8f4 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-0c9079cb { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-35f8d184 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-20b9df4d { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-e16bd254 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-d130df24 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-end;align-items: center; }
+    .fb-b1e7d2b8 { font-size: 11px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #3265e6; }
+    .fb-bf1d8ac4 { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;padding: 10px;border-radius: 10px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-857a9aca { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;gap: 4px;justify-content: space-between;align-items: center;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef;padding-top: 6px;padding-right: 6px;padding-bottom: 6px;padding-left: 6px; }
+    .fb-558ea9b4 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: fit-content;overflow: hidden;position: relative; }
+    .fb-0d2a35be { font-size: 14px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 600; }
+    .fb-e9a75467 { font-size: 12px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #383838;font-weight: 420; }
+    .fb-2348c4ed { align-items: center;border-radius: 50px;display: flex;flex-direction: column;height: 18px;justify-content: center;width: 18px;background-color: #daf0e1;padding: 4px;overflow-x: hidden;overflow-y: hidden; }
+    .fb-2348c4ed { flex-shrink: 0;transition: all 0.1s ease-out; }
+    .fb-2348c4ed:hover { background: #383838; }
+    .fb-354b07b8 { color: #16794c;font-size: 14px;font-weight: 420;height: fit-content;left: auto;letter-spacing: 0.28px;line-height: 115%;position: static;top: auto;width: fit-content; }
+    .fb-0a717692 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-f84c820e { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-eeaeb39a { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px;border-width: 0px 0px 1px 0px;border-style: solid;border-color: #efefef; }
+    .fb-61aa3f84 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-804e4754 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252;font-weight: 600; }
+    .fb-d601ec69 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-8c5b7d38 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-7efb2e5f { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-a47f5597 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-2afbc8eb { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-9057b3c7 { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-fae9e1c6 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252;font-weight: 600; }
+    .fb-e1d55ddc { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-c614d2a5 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-fc1e35ad { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: space-between;align-items: center; }
+    .fb-4f02cf39 { font-size: 13px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #525252; }
+    .fb-681e98de { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;justify-content: flex-start;align-items: flex-start; }
+    .fb-dc7b950b { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;overflow: hidden;position: relative;padding-top: 0px;padding-bottom: 0px;padding-left: 6px;padding-right: 6px;width: 100%; }
+    .fb-6c84b33b { display: flex;flex-direction: column;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 10px;margin-left: 0px; }
+    .fb-0d04b61d { display: flex;flex-direction: row;flex-shrink: 0;height: fit-content;width: 100%;overflow: hidden;position: relative;margin-top: 0px;margin-right: 0px;margin-bottom: 6px;margin-left: 0px;gap: 4px;justify-content: flex-end;align-items: center; }
+    .fb-b625c1fe { font-size: 11px;width: fit-content;height: fit-content;line-height: 1.4;min-width: 10px;position: static;color: #3265e6; }
+    .fb-d4f8eb8e { object-fit: cover;flex-shrink: 0;position: static;width: 100%;height: 200px;display: none; }
+    .fb-d5c6d2ad { border-radius: 4px;display: flex;flex-direction: column;flex-shrink: 0;font-size: 14px;height: 28px;overflow: hidden;position: static;width: 100%;background-color: #f3f3f3;border-width: 0px;border-style: solid;border-color: var(--gray-50);padding-top: 6px;padding-bottom: 6px;padding-left: 8px;padding-right: 8px; }
