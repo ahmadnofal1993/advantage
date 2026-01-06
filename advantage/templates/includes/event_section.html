@@ -1,0 +1,60 @@
+<!-- jinja -->
+{% if template_data %}
+        
+                {% if template_data|length>0 %}
+            
+                   
+                       
+                            <div class="section_header">
+                                <div class="section_title">
+                                    <div class="title">
+                                        <span>Events</span>
+                                    </div>
+                                    <div class="count">
+                                        <span>{{ template_data.num_of_data }} </span>
+                                    </div>
+                                </div>
+                                <div class="section_action">
+                                    <a  id="add_event"  class="action button_link"> 
+                                        <div class="button_text">
+                                            <span>+</span>
+                                        </div> 
+                                    </a>
+                                </div>
+                            </div>
+                            <div class = "section_content">
+                                {% for rec in template_data.data %}
+                                <a target="_blank" href="/app/event/{{ rec.name}}"> 
+                                <div  class="content_row"> 
+                                    <div class="row_text content_title">
+                                        {% if rec.allocated_users %}
+                                         
+                                        {% for user in rec.allocated_users %}
+                                        <span > {{user}} {% if not loop.last %}, {% endif %}</span>
+                                        {% endfor %}    
+                                      
+                                        {% endif %}
+                                    </div>
+                                    <div class="row_text content_description">
+                                        <span>{{rec.subject}}</span>
+                                    </div>
+                                    <div class="row_text content_date">
+                                        <span> {{  format_datetime(rec.creation) }}</span>
+                                    </div>
+                                </div>  
+                            </a>  
+                                {% endfor %}                    
+                            </div>
+                            <div class="section_footer">
+                                <div class="footer_row text_allign_right">
+                                    <div class="footer_text">
+                                        <span><a href="">   {{_('View All')}} </a></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+       
+
+        {% endif %}
+    {% endif %}

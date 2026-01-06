@@ -1,5 +1,6 @@
 import frappe
 from frappe.permissions import AUTOMATIC_ROLES
+import datetime
 
 
 def get_permission_query_conditions(user):
@@ -74,3 +75,29 @@ def get_detailed_connections(lead_name):
     )
 
     return connections
+
+
+
+ 
+
+def format_datetime(dt: datetime.datetime) -> str:
+    # Helper: add suffix to day
+    def day_with_suffix(day: int) -> str:
+        if 11 <= day <= 13:
+            return f"{day}th"
+        else:
+            return f"{day}{['th','st','nd','rd','th'][min(day % 10, 4)]}"
+    
+    # Build formatted string
+    return f"{day_with_suffix(dt.day)} {dt.strftime('%B %Y %I:%M%p')}"
+ 
+def show_how_old(dt: datetime.datetime) -> str:
+    now = datetime.datetime.now()
+
+    # Calculate difference
+     
+    delta = now - dt
+
+    # Format as "X days ago"
+    days_ago = f"{delta.days} days ago"
+    return days_ago

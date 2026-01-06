@@ -1,0 +1,214 @@
+#from __future__ import annotations  # 1. Postpones evaluation of types
+#from typing import TYPE_CHECKING
+import frappe
+import re,json
+from frappe.cache_manager import clear_controller_cache, clear_user_cache
+from advantage.utils import get_detailed_connections,get_lead_phone_numbers,format_datetime,show_how_old
+
+
+#if TYPE_CHECKING:
+from yealink.yealink.doctype.pbx_cdrs.pbx_cdrs import get_phone_cdrs,get_phone_cdrs_by_cdrid
+no_cache = 1
+
+
+def get_context(context):
+     try:          		
+        clear_user_cache(frappe.session.user)
+        #for dev in frappe.get_all('Weighbridge Devices',filters=[ ["parent", "=", weighbridge_name]],order_by='idx',fields = ['*']):
+            #    dev_tp.append({'name':dev.device,'type':dev.type,'gross_tare':dev.taregross})
+
+         #       context.update({"dailytotal":get_total(weighbridge_name)[0][0]})
+           #     context.update({"weighbridge":weighbridge_name,"doc_type":weighbridge_doctype,"manual_entry":has_manual_entry})
+                
+          #      context.update({"dev_list":dev_tp})
+          #      context.update({"server_connected":is_url_accessible()})
+        
+        # context.update({"events_data":{"data":get_events('CRM-LEAD-2025-00002'),"num_of_data":len(get_events('CRM-LEAD-2025-00002'))}})
+        # context.update({"products_data":{"data":get_products('CRM-LEAD-2025-00003'),"num_of_data":len(get_products('CRM-LEAD-2025-00003'))}})
+        # context.update({"issues_data":{"data":get_issues('CRM-LEAD-2025-00002'),"num_of_data":len(get_issues('CRM-LEAD-2025-00002'))}})
+        # context.update({"notes_data":{"data":get_notes('CRM-LEAD-2025-00003'),"num_of_data":len(get_notes('CRM-LEAD-2025-00003'))}})
+        #context.update({"opportunities_data":{"data":get_opportunities('CRM-LEAD-2025-00001')}})
+        context.update({"activites_data":{"calls":get_cdr('CRM-LEAD-2025-00001')}})
+        return context
+     except Exception as e :
+         
+            frappe.log_error(message=f"  file => scale.py page method =>  get_context  for context {context} {frappe.get_traceback()} ", title="Advantage Page") 
+@frappe.whitelist()
+def get_lead_info(lead):
+    events = render_event(lead)
+    products = render_products(lead)
+    issues = render_issues(lead)
+    notes =  render_notes(lead)
+    activites = str(frappe.render_template("templates/includes/note_section.html", {'template_data':{"data":get_notes(lead),"num_of_data":len(get_notes(lead))}}))
+    opportunities = str(frappe.render_template("templates/includes/opportunities_section.html", {'template_data':{"data":get_opportunities(lead)}}))
+    lead=frappe.get_doc('Lead',lead)
+    return events,products,issues,notes,lead,opportunities
+
+
+
+def get_opportunities(lead):
+    return frappe.get_all('Opportunity', filters=[['party_name','=',lead]],fields=['creation','probability','opportunity_type','name','status','owner'],order_by='creation DESC')
+
+@frappe.whitelist()
+def render_products(lead):
+    # from frappe.utils import get_datetime
+    # data=json.loads(data_)	
+    # lead_name=frappe.get_list('Lead',filters=[['name','=',lead]])[0]
+    # lead_doc=frappe.get_doc('Lead',lead_name.name)
+    # lead_doc.append("custom_products", { "product_name": data.get("product"), "buy_date": get_datetime(data.get("buy_date")), "is_company_brand": data.get("company_product") }) # Save changes doc.save()
+    # lead_doc.save()
+    # frappe.db.commit()
+    return  str(frappe.render_template("templates/includes/product_section.html", {'template_data':{"data":get_products(lead),"num_of_data":len(get_products(lead))}}))
+
+@frappe.whitelist()
+def render_issues(lead):
+    return  str(frappe.render_template("templates/includes/issue_section.html", {'template_data':{"data":get_issues(lead),"num_of_data":len(get_issues(lead))}}))
+
+@frappe.whitelist()
+def render_notes(lead):
+    return   str(frappe.render_template("templates/includes/note_section.html", {'template_data':{"data":get_notes(lead),"num_of_data":len(get_notes(lead))}}))  
+
+
+@frappe.whitelist()
+def render_event(lead):    
+    return  str(frappe.render_template("templates/includes/event_section.html", {'template_data':{"data":get_events(lead),"num_of_data":len(get_events(lead))}}))
+
+
+def get_events(lead):
+    connections=get_detailed_connections(lead)
+    event_participants=[]
+    event_participants.append(frappe.get_all('Event Participants', filters=[["reference_doctype",'=','Lead'],['reference_docname','=',lead]],fields=['parent']))
+    if len(connections.get('prospects')) > 0 :
+        event_participants.append(frappe.get_all('Event Participants', filters=[["reference_doctype",'=','Prospect'],['reference_docname','in',connections.get('prospects')]],fields=['parent']))
+    if len(connections.get('opportunities')) > 0 :
+        event_participants.append(frappe.get_all('Event Participants', filters=[["reference_doctype",'=','Opportunity'],['reference_docname','in',connections.get('opportunities')]],fields=['parent']))
+    event_names = [item['parent'] for sublist in event_participants for item in sublist]
+    #frappe.get_all('ToDo', filters=[["reference_type",'=','Event'],['reference_name','in',event_names]],fields=['allocated_to,reference_name'])
+    events= frappe.get_list('Event',filters=[['name','in',event_names]],fields=['subject','status','name','creation'],limit=4)
+    event_owner=frappe.get_all('ToDo', filters=[["reference_type",'=','Event'],['reference_name','in',event_names]],fields=['allocated_to','reference_name'])
+    
+    events= frappe.get_list('Event',filters=[['name','in',event_names]],fields=['subject','status','name','creation'])
+    alloc_map = {} 
+    for a in event_owner: 
+        alloc_map.setdefault(a['reference_name'], []).append(a['allocated_to'])
+    for e in events: 
+        e['allocated_users'] = alloc_map.get(e['name'], [])
+    #lookup = {item['reference_name']: item['allocated_to'] for item in event_owner}
+    #for entry in events:                
+    #    if entry['name'] in lookup:
+    #        entry['allocated_to'] = lookup[entry['name']]
+    ordered = sorted(events, key=lambda x: x['creation'],reverse=True)
+    return ordered
+
+
+def get_products(lead):
+   connections=get_detailed_connections(lead)
+   products=[]
+   pre_data=frappe.get_list('Advantage Products', filters=[['parent','=',lead]],pluck='name')
+   
+   data=frappe.get_all('Advantage Products', filters=[['name','in',pre_data]],fields=['product_name','buy_date'])
+   for item in data: 
+       item['subject'] = 'Owns'
+       item['item'] =item.pop('product_name')
+       item['creation'] =item.pop('buy_date')
+       item['link']="lead/"+lead
+   products.append(data)
+   if len(connections.get('opportunities')) > 0 :
+        pre_data=frappe.get_list('Opportunity Item', filters=[["parenttype",'=','Opportunity'],['parent','in',connections.get('opportunities')]],pluck='name')
+        data=frappe.get_all('Opportunity Item', filters=[['name','in',pre_data]],fields=['item_name','creation','parent'])
+        for item in data: 
+            item['subject'] = 'Interested In'
+            item['item'] =item.pop('item_name')
+            item['link']="opportunity/"+item.pop('parent')
+        products.append(data)
+   if len(connections.get('customer')) > 0 :
+        pre_data=frappe.get_list('Customer Items', filters=[['parent','in',connections.get('customer')]],pluck='name')
+        data=frappe.get_all('Customer Items', filters= [['name','in',pre_data]],fields=['item','sell_date','parent'])
+        for item in data: 
+            item['subject'] = 'Sold'
+            item['item'] =item.pop('item')
+            item['creation'] =item.pop('sell_date')
+            item['link']="customer/"+item.pop('parent')
+        products.append(data)  
+    
+   flat_list = [obj for sublist in products for obj in sublist]
+  
+   ordered = sorted(flat_list, key=lambda x: x['creation'],reverse=True)
+   return ordered
+
+def get_issues(lead):
+    connections=get_detailed_connections(lead)
+    products=[]
+    products.append(frappe.get_list('Issue', filters=[['lead','=',lead]],fields=['name','creation','description','status']))
+    if len(connections.get('customer')) > 0 :
+        products.append(frappe.get_list('Issue', filters=[['customer','in',connections.get('customer')]],fields=['name','creation','description','status']))
+    flat_list = [obj for sublist in products for obj in sublist]
+    ordered = sorted(flat_list, key=lambda x: x['creation'],reverse=True)
+    for item in ordered:            
+            item['description'] =  re.sub(r"<.*?>", "",item.pop('description'))          
+    return ordered
+
+def get_notes(lead):
+    connections=get_detailed_connections(lead)
+    notes=[]
+    pre_data=frappe.get_list('CRM Note', filters=[['parent','=',lead],["parenttype","=","Lead"]],pluck='name')     
+    notes.append(frappe.get_all('CRM Note', filters=[['name','in',pre_data]],fields=['owner','note','parent','added_on','parenttype']))
+    if len(connections.get('opportunities')) > 0 :
+        pre_data=frappe.get_list('CRM Note', filters=[['parent','in',connections.get('opportunities')],["parenttype","=","Opportunity"]],pluck='name')   
+        notes.append(frappe.get_all('CRM Note', filters=[['name','in',pre_data]],fields=['owner','note','parent','added_on','parenttype']))
+    flat_list = [obj for sublist in notes for obj in sublist]
+    ordered = sorted(flat_list, key=lambda x: x['added_on'],reverse=True)
+    for item in ordered:            
+        if 'note' in item:
+            item['note'] =  re.sub(r"<.*?>", "",item.pop('note'))  
+        else:
+            item['note']="NA" 
+        item['link']=item.get('parenttype')[0].lower() + item.pop('parenttype')[1:] +"/"+item.pop('parent')  
+    return ordered
+
+@frappe.whitelist()
+def save_lead(lead):
+    data=json.loads(lead)	
+    if data.get("lead_id") != "NA":
+       
+       
+         
+         
+         
+        updates= {
+			"market_segment" : data.get("market_segment")  ,
+		"gender": data.get("gender"),
+		"first_name": data.get("first_name"),
+        "last_name":data.get("last_name"),
+        "company":data.get("company") ,
+        "job_title":data.get("job_title"),
+        "company_name": data.get("organization"),
+        "mobile_no" : data.get("mobile_no"),
+        "whatsapp_no" : data.get("whatsapp"),
+        "phone": data.get("phone_no"),
+        "email_id": data.get("email"),
+        "industry":data.get("industry"),
+        "territory":data.get("territory"),
+        "custom_birth_date":data.get("birth_date")
+
+        }
+        frappe.db.set_value("Lead", data.get("lead_id"), updates)
+    else:
+        doc = frappe.get_doc({
+            "doctype": "Lead",
+           "gender": data.get("gender"),
+           "first_name": data.get("first_name"),
+        "last_name":data.get("last_name"),
+         "custom_birth_date":data.get("birth_date"),
+          "mobile_no" : data.get("mobile_no")
+        })
+
+        doc.insert()
+        frappe.db.commit()
+
+
+def get_cdr(lead): 
+   cdr_data=[]  
+   return get_phone_cdrs_by_cdrid('0997777073')
+   #for phone in get_lead_phone_numbers(lead):
+   #    cdr_data.append(get_phone_cdrs(1,1,phone))

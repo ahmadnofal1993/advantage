@@ -1,6 +1,12 @@
+#from __future__ import annotations  # 1. Postpones evaluation of types
+#from typing import TYPE_CHECKING
 import frappe
 from frappe.cache_manager import clear_controller_cache, clear_user_cache
-from advantage.utils import get_detailed_connections
+from advantage.utils import get_detailed_connections,get_lead_phone_numbers
+
+
+#if TYPE_CHECKING:
+from yealink.yealink.doctype.pbx_cdrs.pbx_cdrs import get_phone_cdrs
 no_cache = 1
 
 
@@ -22,7 +28,7 @@ def get_context(context):
          
             frappe.log_error(message=f"  file => scale.py page method =>  get_context  for context {context} {frappe.get_traceback()} ", title="Advantage Page") 
 
-
+@frappe.whitelist()
 def get_events(lead):
    connections=get_detailed_connections(lead)
    event_participants=[]
@@ -31,7 +37,7 @@ def get_events(lead):
       event_participants.append(frappe.get_all('Event Participants', filters=[["reference_doctype",'=','Prospect'],['reference_docname','in',connections.get('prospects')]],fields=['parent']))
    if len(connections.get('opportunities')) > 0 :
       event_participants.append(frappe.get_all('Event Participants', filters=[["reference_doctype",'=','Opportunity'],['reference_docname','in',connections.get('opportunities')]],fields=['parent']))
-   event_names = [d['parent'] for d in event_participants]
+   event_names = [item['parent'] for sublist in event_participants for item in sublist]
    return frappe.db.get_list('Event',filters=[['name','in',event_names]])
 
 
@@ -44,3 +50,8 @@ def get_products(lead):
    if len(connections.get('customer')) > 0 :
       products.append(frappe.get_all('Customer Items', filters= [['parent','in',connections.get('customer')]],fields=['item']))
    return products
+
+def get_cdr(lead): 
+   cdr_data=[]  
+   for phone in get_lead_phone_numbers(lead):
+       cdr_data.append(get_phone_cdrs(1,1,phone))

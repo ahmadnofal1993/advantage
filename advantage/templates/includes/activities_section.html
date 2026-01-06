@@ -1,0 +1,64 @@
+<!-- jinja -->
+<div id = "activity" class="section">
+    <div class="section_header">
+        <div class="section_title">
+            <div class="title">
+                <span>Latest Activities</span>
+            </div>
+            <div class="count">
+                <span>2</span>
+            </div>
+        </div>
+       
+    </div>
+    <div class = "section_content">
+      
+        {% for group in template_data.calls | groupby('call_id')  | reverse %}
+            
+            
+            {% set first_row = group.list[0] %} 
+        
+            <div class="content_row">
+                
+                <!-- Left Column: Call Type (Taken from the first record of the group) -->
+                <div class="row_text content_title col-sm-2">
+                    <span>{{ first_row.call_type }}</span>
+                </div>
+        
+                <!-- Middle Column: Loop through ALL details for this specific Call ID -->
+                <div class="content_description col-sm-8">
+                    {% for call in group.list %}
+                        <div class="row_text">
+                            <div class="col-sm-4">
+                                <span>{{ call.related_doctype_id }}</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span>{{ call.disposition }}</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span>{{ call.talk_duration }}s</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        
+                <!-- Right Column: Date (Taken from first record or static) -->
+                <div class="row_text content_date col-sm-2">
+                    <!-- Note: Your data didn't have a date field, so I put a placeholder -->
+                    <span>{{  frappe.utils.pretty_date(first_row.creation)}}</span>
+                </div>
+        
+            </div>
+        {% endfor %}
+        
+       
+    </div>
+    <div class="section_footer">
+        <div class="footer_row text_allign_right">
+            <div class="footer_text">
+                <span><a href="">View All</a></span>
+            </div>
+        </div>
+    </div>
+
+</div>

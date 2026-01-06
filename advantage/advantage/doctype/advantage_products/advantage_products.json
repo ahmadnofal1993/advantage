@@ -1,12 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:product_name",
- "creation": "2025-12-22 16:12:10.825643",
+ "creation": "2025-12-28 15:34:50.871589",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "product_name",
+  "buy_date",
   "is_company_brand"
  ],
  "fields": [
@@ -15,7 +16,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Product Name",
-   "unique": 1
+   "reqd": 1
   },
   {
    "default": "0",
@@ -23,17 +24,23 @@
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "Is Company Brand"
+  },
+  {
+   "fieldname": "buy_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Buy Date",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-12-23 12:25:30.222276",
+ "modified": "2026-01-05 20:53:58.329186",
  "modified_by": "Administrator",
  "module": "Advantage",
  "name": "Advantage Products",
- "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [],
  "row_format": "Dynamic",

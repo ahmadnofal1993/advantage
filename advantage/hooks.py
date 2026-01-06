@@ -71,9 +71,9 @@ has_permission = {
  	"Task": "advantage.utils.has_permission",
 	
  }
-override_doctype_class = {
-	"Contact": "advantage.override.contact.AdvantageContact",
-}
+#override_doctype_class = {
+#	"Contact": "advantage.override.contact.AdvantageContact",
+#}
 # Generators
 # ----------
 
@@ -154,6 +154,11 @@ override_doctype_class = {
 # 		"on_trash": "method"
 # 	}
 # }
+jinja = {
+	"methods": [
+        "advantage.utils.format_datetime",      "advantage.utils.show_how_old"
+        ] 
+}
 
 # Scheduled Tasks
 # ---------------

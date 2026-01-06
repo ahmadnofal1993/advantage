@@ -1,0 +1,53 @@
+<!-- jinja -->
+{% if template_data %}
+        
+                {% if template_data|length>0 %}
+            
+                   
+                        <div id = "events" class="section">
+                            <div class="section_header">
+                                <div class="section_title">
+                                    <div class="title">
+                                        <span>{{ _(template_data.type_data) }} </span>
+                                    </div>
+                                    <div class="count">
+                                        <span>{{ template_data.num_of_data }} </span>
+                                    </div>
+                                </div>
+                                <div class="section_action">
+                                    <a class="action button_link"> 
+                                        <div class="button_text">
+                                            <span>+</span>
+                                        </div> 
+                                    </a>
+                                </div>
+                            </div>
+                            <div class = "section_content">
+                                {% for rec in template_data.data %}
+                                <div  class="content_row"> <a href="/app/{{rec.doc_type}}/{{ rec.name}}"> 
+                                    <div class="row_text content_title">
+                                        <span > {{rec.allocated_to}}</span>
+                                    </div>
+                                    <div class="row_text content_description">
+                                        <span>{{rec.subject}}</span>
+                                    </div>
+                                    <div class="row_text content_date">
+                                        <span> {{  rec.date_as_txt }}</span>
+                                    </div>
+                                </div>  
+                            </a>  
+                                {% endfor %}                    
+                            </div>
+                            <div class="section_footer">
+                                <div class="footer_row text_allign_right">
+                                    <div class="footer_text">
+                                        <span><a href="">   {{_('View All')}} </a></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+       
+
+        {% endif %}
+    {% endif %}

@@ -1,335 +1,210 @@
 
 
-
+<!-- jinja -->
 <div class="content page-container Lead_Information_page">
     <div class="container page-body">
-        <div class="side_panel">
+        <div id="left_side" class="side_panel">
             <div id = "events" class="section">
-                <div class="section_header">
-                    <div class="section_title">
-                        <div class="title">
-                            <span>Events</span>
-                        </div>
-                        <div class="count">
-                            <span>5</span>
-                        </div>
-                    </div>
-                    <div class="section_action">
-                        <a class="action button_link"> 
-                            <div class="button_text">
-                                <span>+</span>
-                            </div> 
-                        </a>
-                    </div>
-                </div>
-                <div class = "section_content">
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Ahmad Nofal</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>Test Drive MGHS</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>22th November 2025 12:00PM</span>
-                        </div>
-                    </div>
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Ahmad Nofal</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>Test Drive MGHS</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>22th November 2025 12:00PM</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="section_footer">
-                    <div class="footer_row text_allign_right">
-                        <div class="footer_text">
-                            <span><a href="">View All</a></span>
-                        </div>
-                    </div>
-                </div>
-
+            {{ frappe.render_template('templates/includes/event_section.html', {'template_data':events_data}) }}
             </div>
             <!----------------------------------------------------- -->
-            <div id = "products" class="section">
-                <div class="section_header">
-                    <div class="section_title">
-                        <div class="title">
-                            <span>Products</span>
-                        </div>
-                        <div class="count">
-                            <span>3</span>
-                        </div>
-                    </div>
-                    <div class="section_action">
-                        <a class="action button_link"> 
-                            <div class="button_text">
-                                <span>+</span>
-                            </div> 
-                        </a>
-                    </div>
-                </div>
-                <div class = "section_content">
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Sportage</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>Sold</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>10 days ago</span>
-                        </div>
-                    </div>
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Seltos</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>Interested In</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>13 days ago</span>
-                        </div>
-                    </div>
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Mazda</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>Owns</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>7 years ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="section_footer">
-                    <div class="footer_row text_allign_right">
-                        <div class="footer_text">
-                            <span><a href="">View All</a></span>
-                        </div>
-                    </div>
-                </div>
-
+            <div id = "product" class="section">
+            {{ frappe.render_template('templates/includes/product_section.html', {'template_data':products_data}) }}
             </div>
         </div>
         <div class="main_panel">
             <div id = "main" class="section">
                 <div class="main_section">
-                        <div class="form-tabs-list">
-                            <ul class="nav form-tabs">
-                                <li class="nav-item show">
-                                    <button class="nav-link active">
-                                        Lead
-                                    </button>
-                                </li>
-                                <li class="nav-item show">
-                                    <button class="nav-link">
-                                        Opportunities
-                                    </button>
-                                </li>
-                                <li class="nav-item show">
-                                    <button class="nav-link">
-                                        Maintenance
-                                    </button>
-                                </li>
-                            </ul>
+                    <div class="form-tabs-list">
+                        
+                        <ul class="nav form-tabs">
+                            <span  id="expand" class="sidebar-toggle-icon">
+                                <svg class="es-icon es-line  icon-md"  aria-hidden="true">
+                                    <use id="expand_icon"  href="#es-line-sidebar-expand"></use>
+                                </svg>
+                            </span>
+                            <li class="nav-item show">
+                                <button class="nav-link active">
+                                    Lead
+                                </button>
+                            </li>
+                            <li class="nav-item show">
+                                <button class="nav-link">
+                                    Opportunities
+                                </button>
+                            </li>
+                            <li class="nav-item show">
+                                <button class="nav-link">
+                                    Maintenance
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="info_list">
+                            <div class="info_item">
+                                <div class="info_button nav-link" href="#">
+                                    <div id="lead_owner" class="info_text indicator-pill no-indicator-dot whitespace-nowrap white hidden">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info_item">
+                                <div class="info_button nav-link" href="#">
+                                    <div id="status"  class="info_text indicator-pill no-indicator-dot whitespace-nowrap red hidden">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info_item">
+                                <div class="info_button nav-link" href="#">
+                                    
+                                    <div id="qualification_status" class="info_text indicator-pill no-indicator-dot whitespace-nowrap gray hidden">
+                                       
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    
+                    <div class="popup_notes_container">
+                        <div class="popup_notes_note">
+                            <div class="popup_notes_text">
+                                <span>This is a note to call center for this specific lead</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-tab-content tab-content">
+                        <!---Tab form------------------------------------------------------------------------------------------------------>
+                        <div class="tab-pane fade active show" id="main-lead" role="tabpanel">
+                            <form>
+                                <!---Section----------------------------------------------------------------------------------------------->
+                                <div class="row form-section card-section visible-section" data-fieldname="__section_lead_status">
+                                    <div class="section-head collapsible hide">
+                                        Lead Status
+                                        <span class="ml-2 collapse-indicator mb-1" tabindex="0"  >
+                                            <svg class="es-icon es-line  icon-sm"   aria-hidden="true">
+                                                <use class="mb-1" href="#es-line-up"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="section-body">
+                                        <div class="form-column col-sm-4 ">
+                                            <div id="lead" > </div>
+                                                        
+                                            
+                                        </div>
+                                        <div class="form-column col-sm-4 custom-form-input" >
+                                            <div id="market_segment" > </div>
+                                        </div>
+                                        <div class="form-column col-sm-4 custom-form-input">
+                                            <div id="company" > </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---Section----------------------------------------------------------------------------------------------->
+                                <div class="row form-section card-section visible-section" data-fieldname="__section_lead_status">
+                                    <div class="section-head collapsible">
+                                        Lead Information
+                                        <span class="ml-2 collapse-indicator mb-1" tabindex="0" >
+                                            <svg class="es-icon es-line  icon-sm"  aria-hidden="true">
+                                                <use class="mb-1" href="#es-line-up"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="section-body">
+                                        <div class="form-column col-sm-4" data-fieldname="__column_1">
+                                            <div class="frappe-control input-max-width" data-fieldtype="Link" data-fieldname="full_name">
+                                                <div class="form-group">
+                                                    <label class="control-label" style="padding-right: 0px;">
+                                                        Full Name
+                                                    </label>
+                                                    <div class="control-input-wrapper">
+                                                        <div class="control-input">
+                                                            <div class="link-field ui-front" style="position: relative;">
+                                                                <div class="awesomplete">
+                                                                    <input  readonly id="full_name" type="text" class="input-with-feedback form-control bold" maxlength="140" data-fieldtype="Link" data-fieldname="lead" placeholder="" data-doctype="Lead" data-target="DocType" autocomplete="off" aria-expanded="false" aria-owns="awesomplete_list_7" role="combobox">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                                    
+                                                    <div id="first_name" class="custom-form-input" > </div>
+                                            
+                                                    <div id="last_name"  class="custom-form-input"> </div>
+                                             
+                                        </div>
+                                        <div class="form-column col-sm-4" >
+                                            <div id="job_title" class="custom-form-input"> </div>
+                                           <div id="organization" class="custom-form-input"></div>
+                                          
+                                            <div id="industry" class="custom-form-input"> </div>
+                                            
+                                        </div>
+                                        <div class="form-column col-sm-4" >
+                                            
+                                                  
+                                                    <div id="gender" class="custom-form-input" > </div>
+                                                    <div class="custom-form-input" >
+                                                        <div id="territory"  class="custom-form-input" > </div>
+                                                    </div>
+                                                    <div class="custom-form-input" >
+                                                    <div id="birth_date" ></div>
 
+                                                </div>
+                                             
+                                                    
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---Section----------------------------------------------------------------------------------------------->
+                                <div class="row form-section card-section visible-section" data-fieldname="__section_contact_info">
+                                    <div class="section-head collapsible">
+                                        Contact Information
+                                        <span class="ml-2 collapse-indicator mb-1" tabindex="0" style="">
+                                            <svg class="es-icon es-line  icon-sm" style="" aria-hidden="true">
+                                                <use class="mb-1" href="#es-line-up"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="section-body">
+                                        <div class="form-column col-sm-4">
+                                            <div id="mobile_num" class="custom-form-input"></div>
+                                            <div id="phone_num" class="custom-form-input"></div>
+                                           
+                                        </div>
+                                        <div class="form-column col-sm-4" >
+                                            <div id="whatsapp" class="custom-form-input" ></div>
+                                             
+                                        </div>
+                                        <div class="form-column col-sm-4">
+                                            <div id="email" class="custom-form-input" ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!---Tab form------------------------------------------------------------------------------------------------------>
+                        <div class="tab-pane fade active show" id="main-opportunity" role="tabpanel">
+                            <form>
+                                {{ frappe.render_template('templates/includes/opportunities_section.html', {'template_data':opportunities_data}) }}
+                                
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id = "activity" class="section">
-                <div class="section_header">
-                    <div class="section_title">
-                        <div class="title">
-                            <span>Latest Activities</span>
-                        </div>
-                        <div class="count">
-                            <span>2</span>
-                        </div>
-                    </div>
-                    <div class="section_action hide">
-                        <a class="action button_link"> 
-                            <div class="button_text">
-                                <span>+</span>
-                            </div> 
-                        </a>
-                    </div>
-                </div>
-                <div class = "section_content">
-                    <div class="content_row">
-                        <div class="row_text content_title col-sm-2">
-                            <span>Call Out</span>
-                        </div>
-                        <div class="row_text content_description col-sm-8">
-                            <div class="col-sm-4">
-                                <span>Ahmad Nofal</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <span>Answered</span>
-                            </div>
-                            <div class="col-sm-4">
-                                <span>12 minutes</span>
-                            </div>
-                        </div>
-                        <div class="row_text content_date col-sm-2">
-                            <span>1 month ago</span>
-                        </div>
-                    </div>
-                    <!------------------------------------------------------------------------------------------------------------>
-                    <div class="content_row">
-                        <div class="row_text content_title col-sm-2">
-                            <span>Call In</span>
-                        </div>
-                        <div class="content_description col-sm-8">
-                            <div class="row_text">
-                                <div class="col-sm-4">
-                                    <span>Shady Zain</span>
-                                </div>
-                                <div class="col-sm-4">
-                                    <span>Answered</span>
-                                </div>
-                                <div class="col-sm-4">
-                                    <span>6 minutes</span>
-                                </div>
-                            </div>
-                            <div class="row_text">
-                                <div class="col-sm-4">
-                                    <span>Ahmad Nofal</span>
-                                </div>
-                                <div class="col-sm-4">
-                                    <span>Missed</span>
-                                </div>
-                                <div class="col-sm-4">
-                                    <span>0 minutes</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row_text content_date col-sm-2">
-                            <span>1 month ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="section_footer">
-                    <div class="footer_row text_allign_right">
-                        <div class="footer_text">
-                            <span><a href="">View All</a></span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            {{ frappe.render_template('templates/includes/activities_section.html', {'template_data':activites_data}) }}
         </div>
         <div class="side_panel">
             <div id = "issues" class="section">
-                <div class="section_header">
-                    <div class="section_title">
-                        <div class="title">
-                            <span>Issues</span>
-                        </div>
-                        <div class="count">
-                            <span>2</span>
-                        </div>
-                    </div>
-                    <div class="section_action">
-                        <a class="action button_link"> 
-                            <div class="button_text">
-                                <span>+</span>
-                            </div> 
-                        </a>
-                    </div>
-                </div>
-                <div class = "section_content">
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Open</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>Nobody answers my calls</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>30 minutes ago</span>
-                        </div>
-                    </div>
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Resolved</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>Cannot access your website</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>1 month ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="section_footer">
-                    <div class="footer_row text_allign_right">
-                        <div class="footer_text">
-                            <span><a href="">View All</a></span>
-                        </div>
-                    </div>
-                </div>
-
+            {{ frappe.render_template('templates/includes/issue_section.html', {'template_data':issues_data}) }}
             </div>
             <!------------------------------------------------------------------------------------------------------->
             <div id = "notes" class="section">
-                <div class="section_header">
-                    <div class="section_title">
-                        <div class="title">
-                            <span>Notes</span>
-                        </div>
-                        <div class="count">
-                            <span>10</span>
-                        </div>
-                    </div>
-                    <div class="section_action">
-                        <a class="action button_link"> 
-                            <div class="button_text">
-                                <span>+</span>
-                            </div> 
-                        </a>
-                    </div>
-                </div>
-                <div class = "section_content">
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Administrator</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>He requested information about price installments, and first payment</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>2 days ago</span>
-                        </div>
-                    </div>
-                    <div class="content_row">
-                        <div class="row_text content_title">
-                            <span>Shady Zain</span>
-                        </div>
-                        <div class="row_text content_description">
-                            <span>We are waiting for information from finance about payment through bank transfers</span>
-                        </div>
-                        <div class="row_text content_date">
-                            <span>2 months ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="section_footer">
-                    <div class="footer_row text_allign_right">
-                        <div class="footer_text">
-                            <span><a href="">View All</a></span>
-                        </div>
-                    </div>
-                </div>
-
+            {{ frappe.render_template('templates/includes/note_section.html', {'template_data':notes_data}) }}
             </div>
         </div>
     </div>

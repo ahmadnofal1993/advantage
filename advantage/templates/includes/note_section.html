@@ -1,0 +1,54 @@
+<!-- jinja -->
+{% if template_data %}
+        
+                {% if template_data|length>0 %}
+            
+                   
+                        
+                            <div class="section_header">
+                                <div class="section_title">
+                                    <div class="title">
+                                        <span>Notes </span>
+                                    </div>
+                                    <div class="count">
+                                        <span>{{ template_data.num_of_data }} </span>
+                                    </div>
+                                </div>
+                                <div class="section_action">
+                                    <a id="add_note" class="action button_link"> 
+                                        <div class="button_text">
+                                            <span>+</span>
+                                        </div> 
+                                    </a>
+                                </div>
+                            </div>
+                            <div class = "section_content">
+                                {% for rec in template_data.data %}
+                                <a target="_blank" href="/app/{{ rec.link}}"> 
+                                <div  class="content_row">  
+                                    <div class="row_text content_title">
+                                        <span > {{rec.owner}}</span>
+                                    </div>
+                                    <div class="row_text content_description">
+                                        <span>{{rec.note}}</span>
+                                    </div>
+                                    <div class="row_text content_date">
+                                        <span> {{ frappe.utils.pretty_date(rec.added_on) }}</span>
+                                    </div>
+                                </div>  
+                                </a>
+                                {% endfor %}                    
+                            </div>
+                            <div class="section_footer">
+                                <div class="footer_row text_allign_right">
+                                    <div class="footer_text">
+                                        <span><a href="">   {{_('View All')}} </a></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                       
+       
+
+        {% endif %}
+    {% endif %}
