@@ -2,7 +2,7 @@
 
 <!-- jinja -->
 <div class="content page-container Lead_Information_page">
-    <div class="container page-body">
+    <div   class="container page-body">
         <div id="left_side" class="side_panel">
             <div id = "events" class="section">
             {{ frappe.render_template('templates/includes/event_section.html', {'template_data':events_data}) }}
@@ -25,17 +25,17 @@
                             </span>
                             <li class="nav-item show">
                                 <button class="nav-link active">
-                                    Lead
+                                    {{_('Lead') }} 
                                 </button>
                             </li>
                             <li class="nav-item show">
                                 <button class="nav-link">
-                                    Opportunities
+                                    {{_('Opportunities') }} 
                                 </button>
                             </li>
                             <li class="nav-item show">
                                 <button class="nav-link">
-                                    Maintenance
+                                    {{_('Maintenance') }} 
                                 </button>
                             </li>
                         </ul>
@@ -79,7 +79,8 @@
                                 <!---Section----------------------------------------------------------------------------------------------->
                                 <div class="row form-section card-section visible-section" data-fieldname="__section_lead_status">
                                     <div class="section-head collapsible hide">
-                                        Lead Status
+                                       
+                                        {{_('Lead Status') }} 
                                         <span class="ml-2 collapse-indicator mb-1" tabindex="0"  >
                                             <svg class="es-icon es-line  icon-sm"   aria-hidden="true">
                                                 <use class="mb-1" href="#es-line-up"></use>
@@ -103,19 +104,21 @@
                                 <!---Section----------------------------------------------------------------------------------------------->
                                 <div class="row form-section card-section visible-section" data-fieldname="__section_lead_status">
                                     <div class="section-head collapsible">
-                                        Lead Information
+                                        
+                                        {{_('Lead Information') }} 
                                         <span class="ml-2 collapse-indicator mb-1" tabindex="0" >
-                                            <svg class="es-icon es-line  icon-sm"  aria-hidden="true">
-                                                <use class="mb-1" href="#es-line-up"></use>
+                                            <svg id="expand_information" class="es-icon es-line  icon-sm"  aria-hidden="true">
+                                                <use id="expand_information_icon" class="mb-1" href="#es-line-up"></use>
                                             </svg>
                                         </span>
                                     </div>
-                                    <div class="section-body">
+                                    <div id="lead_info_section" class="section-body">
                                         <div class="form-column col-sm-4" data-fieldname="__column_1">
                                             <div class="frappe-control input-max-width" data-fieldtype="Link" data-fieldname="full_name">
                                                 <div class="form-group">
                                                     <label class="control-label" style="padding-right: 0px;">
-                                                        Full Name
+                                                        
+                                                        {{_('Full Name') }} 
                                                     </label>
                                                     <div class="control-input-wrapper">
                                                         <div class="control-input">
@@ -161,14 +164,15 @@
                                 <!---Section----------------------------------------------------------------------------------------------->
                                 <div class="row form-section card-section visible-section" data-fieldname="__section_contact_info">
                                     <div class="section-head collapsible">
-                                        Contact Information
-                                        <span class="ml-2 collapse-indicator mb-1" tabindex="0" style="">
-                                            <svg class="es-icon es-line  icon-sm" style="" aria-hidden="true">
-                                                <use class="mb-1" href="#es-line-up"></use>
+                                        
+                                        {{_('Contact Information') }} 
+                                        <span class="ml-2 collapse-indicator mb-1" tabindex="0" >
+                                            <svg id="expand_contact_information" class="es-icon es-line  icon-sm"  aria-hidden="true">
+                                                <use id="expand_contact_information_icon" class="mb-1" href="#es-line-up"></use>
                                             </svg>
                                         </span>
                                     </div>
-                                    <div class="section-body">
+                                    <div id="contact_info_section" class="section-body">
                                         <div class="form-column col-sm-4">
                                             <div id="mobile_num" class="custom-form-input"></div>
                                             <div id="phone_num" class="custom-form-input"></div>

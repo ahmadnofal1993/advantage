@@ -39,7 +39,6 @@ def get_lead_info(lead):
     products = render_products(lead)
     issues = render_issues(lead)
     notes =  render_notes(lead)
-    activites = str(frappe.render_template("templates/includes/note_section.html", {'template_data':{"data":get_notes(lead),"num_of_data":len(get_notes(lead))}}))
     opportunities = str(frappe.render_template("templates/includes/opportunities_section.html", {'template_data':{"data":get_opportunities(lead)}}))
     lead=frappe.get_doc('Lead',lead)
     return events,products,issues,notes,lead,opportunities
@@ -58,23 +57,27 @@ def render_products(lead):
     # lead_doc.append("custom_products", { "product_name": data.get("product"), "buy_date": get_datetime(data.get("buy_date")), "is_company_brand": data.get("company_product") }) # Save changes doc.save()
     # lead_doc.save()
     # frappe.db.commit()
-    return  str(frappe.render_template("templates/includes/product_section.html", {'template_data':{"data":get_products(lead),"num_of_data":len(get_products(lead))}}))
+    data=get_products(lead,[],4)
+    return  str(frappe.render_template("templates/includes/product_section.html", {'template_data':{"lead":lead,"data":data,"num_of_data":len(data)}}))
 
 @frappe.whitelist()
 def render_issues(lead):
-    return  str(frappe.render_template("templates/includes/issue_section.html", {'template_data':{"data":get_issues(lead),"num_of_data":len(get_issues(lead))}}))
+    data=get_issues(lead,['name','creation','description','status'],3)
+    return  str(frappe.render_template("templates/includes/issue_section.html", {'template_data':{"lead":lead,"data":data,"num_of_data":len(data)}}))
 
 @frappe.whitelist()
 def render_notes(lead):
-    return   str(frappe.render_template("templates/includes/note_section.html", {'template_data':{"data":get_notes(lead),"num_of_data":len(get_notes(lead))}}))  
+    data=get_notes(lead,['owner','note','parent','added_on','parenttype'],3)
+    return   str(frappe.render_template("templates/includes/note_section.html", {'template_data':{"lead":lead,"data":data,"num_of_data":len(data)}}))  
 
 
 @frappe.whitelist()
 def render_event(lead):    
-    return  str(frappe.render_template("templates/includes/event_section.html", {'template_data':{"data":get_events(lead),"num_of_data":len(get_events(lead))}}))
+    data=get_events(lead,['subject','status','name','creation'],4)
+    return  str(frappe.render_template("templates/includes/event_section.html", {'template_data':{"lead":lead,"data":data,"num_of_data":len(data)}}))
 
 
-def get_events(lead):
+def get_events(lead,fields,limit):
     connections=get_detailed_connections(lead)
     event_participants=[]
     event_participants.append(frappe.get_all('Event Participants', filters=[["reference_doctype",'=','Lead'],['reference_docname','=',lead]],fields=['parent']))
@@ -84,10 +87,9 @@ def get_events(lead):
         event_participants.append(frappe.get_all('Event Participants', filters=[["reference_doctype",'=','Opportunity'],['reference_docname','in',connections.get('opportunities')]],fields=['parent']))
     event_names = [item['parent'] for sublist in event_participants for item in sublist]
     #frappe.get_all('ToDo', filters=[["reference_type",'=','Event'],['reference_name','in',event_names]],fields=['allocated_to,reference_name'])
-    events= frappe.get_list('Event',filters=[['name','in',event_names]],fields=['subject','status','name','creation'],limit=4)
+    events= frappe.get_list('Event',filters=[['name','in',event_names]],fields=fields,limit=limit)
     event_owner=frappe.get_all('ToDo', filters=[["reference_type",'=','Event'],['reference_name','in',event_names]],fields=['allocated_to','reference_name'])
-    
-    events= frappe.get_list('Event',filters=[['name','in',event_names]],fields=['subject','status','name','creation'])
+      
     alloc_map = {} 
     for a in event_owner: 
         alloc_map.setdefault(a['reference_name'], []).append(a['allocated_to'])
@@ -101,12 +103,19 @@ def get_events(lead):
     return ordered
 
 
-def get_products(lead):
+def get_products(lead,fields,limit):
    connections=get_detailed_connections(lead)
    products=[]
-   pre_data=frappe.get_list('Advantage Products', filters=[['parent','=',lead]],pluck='name')
-   
-   data=frappe.get_all('Advantage Products', filters=[['name','in',pre_data]],fields=['product_name','buy_date'])
+   pre_data=frappe.get_all('Advantage Products', filters=[['parent','=',lead]],pluck='name',limit=limit)
+   pre_fields=['product_name','buy_date']
+   meta = frappe.get_meta("Advantage Products")
+   doctype_fields=[item.fieldname for item in meta.fields]
+   filtered = [item for item in fields if item in doctype_fields] 
+   all_fields = pre_fields + filtered
+  
+  
+
+   data=frappe.get_all('Advantage Products', filters=[['name','in',pre_data]],fields=all_fields)
    for item in data: 
        item['subject'] = 'Owns'
        item['item'] =item.pop('product_name')
@@ -114,16 +123,27 @@ def get_products(lead):
        item['link']="lead/"+lead
    products.append(data)
    if len(connections.get('opportunities')) > 0 :
-        pre_data=frappe.get_list('Opportunity Item', filters=[["parenttype",'=','Opportunity'],['parent','in',connections.get('opportunities')]],pluck='name')
-        data=frappe.get_all('Opportunity Item', filters=[['name','in',pre_data]],fields=['item_name','creation','parent'])
+        pre_data=frappe.get_all('Opportunity Item', filters=[["parenttype",'=','Opportunity'],['parent','in',connections.get('opportunities')]],pluck='name',limit=limit)
+        pre_fields=['item_name','creation','parent']
+       
+        meta = frappe.get_meta("Opportunity Item")
+        doctype_fields=[item.fieldname for item in meta.fields]
+        filtered = [item for item in fields if item in doctype_fields] 
+        all_fields = pre_fields + filtered
+        data=frappe.get_all('Opportunity Item', filters=[['name','in',pre_data]],fields=all_fields)
         for item in data: 
             item['subject'] = 'Interested In'
             item['item'] =item.pop('item_name')
             item['link']="opportunity/"+item.pop('parent')
         products.append(data)
    if len(connections.get('customer')) > 0 :
-        pre_data=frappe.get_list('Customer Items', filters=[['parent','in',connections.get('customer')]],pluck='name')
-        data=frappe.get_all('Customer Items', filters= [['name','in',pre_data]],fields=['item','sell_date','parent'])
+        pre_data=frappe.get_all('Customer Items', filters=[['parent','in',connections.get('customer')]],pluck='name',limit=limit)
+        pre_fields=['item','sell_date','parent']
+        meta = frappe.get_meta("Customer Items")
+        doctype_fields=[item.fieldname for item in meta.fields]
+        filtered = [item for item in fields if item in doctype_fields] 
+        all_fields = pre_fields + filtered    
+        data=frappe.get_all('Customer Items', filters= [['name','in',pre_data]],fields=all_fields)
         for item in data: 
             item['subject'] = 'Sold'
             item['item'] =item.pop('item')
@@ -136,26 +156,26 @@ def get_products(lead):
    ordered = sorted(flat_list, key=lambda x: x['creation'],reverse=True)
    return ordered
 
-def get_issues(lead):
+def get_issues(lead,fields,limit):
     connections=get_detailed_connections(lead)
     products=[]
-    products.append(frappe.get_list('Issue', filters=[['lead','=',lead]],fields=['name','creation','description','status']))
+    products.append(frappe.get_list('Issue', filters=[['lead','=',lead]],fields=fields,limit=limit))
     if len(connections.get('customer')) > 0 :
-        products.append(frappe.get_list('Issue', filters=[['customer','in',connections.get('customer')]],fields=['name','creation','description','status']))
+        products.append(frappe.get_list('Issue', filters=[['customer','in',connections.get('customer')]],fields=fields,limit=limit))
     flat_list = [obj for sublist in products for obj in sublist]
     ordered = sorted(flat_list, key=lambda x: x['creation'],reverse=True)
     for item in ordered:            
             item['description'] =  re.sub(r"<.*?>", "",item.pop('description'))          
     return ordered
 
-def get_notes(lead):
+def get_notes(lead,fields,limit):
     connections=get_detailed_connections(lead)
     notes=[]
-    pre_data=frappe.get_list('CRM Note', filters=[['parent','=',lead],["parenttype","=","Lead"]],pluck='name')     
-    notes.append(frappe.get_all('CRM Note', filters=[['name','in',pre_data]],fields=['owner','note','parent','added_on','parenttype']))
+    pre_data=frappe.get_all('CRM Note', filters=[['parent','=',lead],["parenttype","=","Lead"]],pluck='name',limit=limit)     
+    notes.append(frappe.get_all('CRM Note', filters=[['name','in',pre_data]],fields=fields))
     if len(connections.get('opportunities')) > 0 :
-        pre_data=frappe.get_list('CRM Note', filters=[['parent','in',connections.get('opportunities')],["parenttype","=","Opportunity"]],pluck='name')   
-        notes.append(frappe.get_all('CRM Note', filters=[['name','in',pre_data]],fields=['owner','note','parent','added_on','parenttype']))
+        pre_data=frappe.get_all('CRM Note', filters=[['parent','in',connections.get('opportunities')],["parenttype","=","Opportunity"]],pluck='name',limit=limit)   
+        notes.append(frappe.get_all('CRM Note', filters=[['name','in',pre_data]],fields=fields))
     flat_list = [obj for sublist in notes for obj in sublist]
     ordered = sorted(flat_list, key=lambda x: x['added_on'],reverse=True)
     for item in ordered:            

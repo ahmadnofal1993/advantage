@@ -8,7 +8,7 @@
                             <div class="section_header">
                                 <div class="section_title">
                                     <div class="title">
-                                        <span>Events</span>
+                                        <span>{{ _('Events') }}</span>
                                     </div>
                                     <div class="count">
                                         <span>{{ template_data.num_of_data }} </span>
@@ -39,7 +39,7 @@
                                         <span>{{rec.subject}}</span>
                                     </div>
                                     <div class="row_text content_date">
-                                        <span> {{  format_datetime(rec.creation) }}</span>
+                                        <span> {{      frappe.utils.pretty_date(rec.creation) }}</span>
                                     </div>
                                 </div>  
                             </a>  
@@ -48,7 +48,7 @@
                             <div class="section_footer">
                                 <div class="footer_row text_allign_right">
                                     <div class="footer_text">
-                                        <span><a href="">   {{_('View All')}} </a></span>
+                                        <span><a target="_blank"  href="query-report/Lead Events?lead={{template_data.lead}}">   {{_('View All')}} </a></span>
                                     </div>
                                 </div>
                             </div>

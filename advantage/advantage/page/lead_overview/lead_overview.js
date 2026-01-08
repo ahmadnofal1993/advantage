@@ -11,12 +11,19 @@ frappe.pages['lead-overview'].on_page_load = function(wrapper) {
 	// Hide Page Title
     //page.wrapper.find('.page-head').hide();
 
-	//page.wrapper.find('.layout-main-section').css({
-    //    'max-width': '100%',
-    //    'width': '100%',
-    //    'padding': '0'
-    //});
-    
+	/*page.wrapper.find('.page-body').css({
+        'max-width': '100% !important',
+    'display': 'flex',
+    'flex-direction': 'row',
+    'flex-shrink': '0',
+    'height': 'fit-content',
+    'width': '100%',
+    'overflow': 'hidden',
+    'position': 'relative',
+    'flex-wrap': 'wrap',
+    'padding': '5px !important',
+    });
+    */
     // Optional: Remove default padding from the page body
     //page.wrapper.find('.page-body').css({
     //    'min-height': 'calc(100vh - 100px)' // Ensure full height usage
@@ -43,7 +50,9 @@ frappe.pages['lead-overview'].on_page_load = function(wrapper) {
         {
             lead_summary.mobile_no_field.set_value(route[1]);
             lead_summary.mobile_no_field.df.read_only = 1;
+            lead_summary.lead_field.df.read_only = 1;
             lead_summary.mobile_no_field.refresh();
+            lead_summary.lead_field.refresh();
          
             lead_summary.has_unsaved_changes=true;
             lead_summary.setup_browser_guard();
@@ -55,6 +64,14 @@ frappe.pages['lead-overview'].on_page_load = function(wrapper) {
         }
         // Run your logic here
     }
+    // if (route[2])
+    // {
+    //     console.log("View:", route[2]);
+    //     lead_summary.company_field.df.read_only = 1;
+    //     lead_summary.company_field.refresh();
+        
+
+    // }
     // Remove spacing
     //$('.page-container').css('padding-top', '0');
    
@@ -71,10 +88,25 @@ LeadOverview = class {
             title: __('Lead Overview'),
             single_column: true
         });
+       
+         
         this.is_dirty=false;
         // 2. Render Content
         this.render();
+        // $(wrapper).find('.page-body').css({
+            
 
+        //     'max-width': '100% !important',
+        //     'display': 'flex',
+        //     'flex-direction': 'row',
+        //     'flex-shrink': '0',
+        //     'height': 'fit-content',
+        //     'width': '100%',
+        //     'overflow': 'hidden',
+        //     'position': 'relative',
+        //     'flex-wrap': 'wrap',
+        //     'padding': '5px !important'
+        // });
         // 3. Setup Buttons
     
 
@@ -102,7 +134,7 @@ LeadOverview = class {
               label:__('Gender'),
               fieldtype: 'Link', 
               options: 'Gender' ,
-              reqd:'1'
+               
               
             }, 
             parent: $(this.wrapper).find("#gender"), 
@@ -115,7 +147,9 @@ LeadOverview = class {
                   label:__('Company'),
                   fieldtype: 'Link', 
                   options: 'Company' ,
-                  reqd:'1'
+                  reqd:'1',
+                  read_only:1
+                   
                   
                 }, 
                 parent: $(this.wrapper).find("#company"), 
@@ -256,7 +290,7 @@ LeadOverview = class {
                     
                     render_input: true       
                 });    
-             
+               this.company_field.set_value(frappe.defaults.get_default("company"));
       this.init(wrapper);
      
      
@@ -302,26 +336,47 @@ LeadOverview = class {
     render() {
         // Example content
         $(frappe.render_template("lead_overview")).appendTo(this.page.main);
+    
 
     }
 
     setup_actions() {
         // Add the primary button to the top right
         // We use arrow function () => to keep 'this' bound to the class
-        this.page.set_primary_action(__('Save'), () => this.save_data());
+        this.page.set_primary_action(__('Save'), () =>this.add_opportunities(this.lead_field.get_value()) );
+        //this.save_data()
+    }
+
+    add_opportunities(lead)
+    {   
+        console.log(lead);
+        frappe.new_doc("Opportunity"); 
+        frappe.ui.form.on("Opportunity", 
+        { onload: function(frm) { 
+            console.log('aaaaaaaaaaaaaaaaaaaaaaa');
+            frm.set_value("opportunity_from", "Lead").then(() => {
+                frm.set_value("party_name", lead).then(() => {
+                    frm.set_df_property("party_name", "read_only", 1);
+                    frm.refresh_field("party_name"); 
+                }); 
+            }); 
+            frm.set_df_property("opportunity_from", "read_only", 1);
+     
+          
+            
+           
+           console.log(frm.doc.party_name);
+            frm.set_df_property("opportunity_type", "reqd", 1);
+           
+           
+        } 
+    });
     }
     save_data()
     {
         if ( this.has_unsaved_changes == true )
         {
-            if (this.gender_field.get_value() == undefined || this.gender_field.get_value()=='' )
-            {
-                frappe.throw("Gender is Mandatory");
-            }
-            if (this.company_field.get_value() == undefined || this.company_field.get_value()=='' )
-            {
-                frappe.throw("Company is Mandatory");
-            }
+        
             if (this.first_name_field.get_value() == undefined || this.first_name_field.get_value()=='' )
             {
                 frappe.throw("First Name is Mandatory");
@@ -772,13 +827,13 @@ LeadOverview = class {
         me.industry_field.set_value('');
         
          
-       me.gender_field.$wrapper.addClass('has-error');       
-       me.gender_field.$input.val('');
-       
+    //    me.gender_field.$wrapper.addClass('has-error');       
+    //    me.gender_field.$input.val('');
+       me.gender_field.set_value('');
     
         me.company_field.$wrapper.addClass('has-error');    
            
-        me.company_field.$input.val('');
+       
 
         me.first_name_field.$wrapper.addClass('has-error');    
         me.first_name_field.$input.val('');
@@ -830,6 +885,34 @@ LeadOverview = class {
          
         }
       );
+      $(me.wrapper).find("#expand_information")[0].addEventListener(
+        "click",
+        function () {
+         
+          if ($(this).find("#expand_information_icon")[0].getAttribute("href") === "#es-line-up") {
+            $(this).find("#expand_information_icon")[0].setAttribute("href", "#es-line-down");
+            $(me.wrapper).find("#lead_info_section")[0].style.display = "none";
+          } else {
+            $(this).find("#expand_information_icon")[0].setAttribute("href", "#es-line-up");
+            $(me.wrapper).find("#lead_info_section")[0].style.display = "";
+          }
+         
+        }
+      );
+      $(me.wrapper).find("#expand_contact_information")[0].addEventListener(
+        "click",
+        function () {
+         
+          if ($(this).find("#expand_contact_information_icon")[0].getAttribute("href") === "#es-line-up") {
+            $(this).find("#expand_contact_information_icon")[0].setAttribute("href", "#es-line-down");
+            $(me.wrapper).find("#contact_info_section")[0].style.display = "none";
+          } else {
+            $(this).find("#expand_contact_information_icon")[0].setAttribute("href", "#es-line-up");
+            $(me.wrapper).find("#contact_info_section")[0].style.display = "";
+          }
+         
+        }
+      );
       //-------------------------------------------<end of make expand action > ---------------------------
 
       // add Lead Link Field 
@@ -852,17 +935,20 @@ LeadOverview = class {
                 
                
                 console.log(current_value);
-                if (current_value.length > 1) {
+                console.log(current_value.length);
+                if (current_value.length > 1 ) {
                     me.last_lead_value=current_value;
                     // Case A: User selected a Lead
                     console.log("clear indicator");
                     me.page.set_indicator("", "");
                   
                       me.refresh_data(this.value,wrapper);
-                     
+                      
                     me.has_unsaved_changes=false;
                     
-                } else {
+                } 
+             
+                else {
                     // Case B: User CLEARED the field (Clicked X)
                    
                      
