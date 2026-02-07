@@ -10,5 +10,9 @@ frappe.query_reports["Lead Events"] = {
             "options": "Lead",
             
         },
-	]
+	],"onload": function(report) {
+        
+        report.refresh();
+        
+       }
 };

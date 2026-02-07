@@ -14,21 +14,8 @@ no_cache = 1
 def get_context(context):
      try:          		
         clear_user_cache(frappe.session.user)
-        #for dev in frappe.get_all('Weighbridge Devices',filters=[ ["parent", "=", weighbridge_name]],order_by='idx',fields = ['*']):
-            #    dev_tp.append({'name':dev.device,'type':dev.type,'gross_tare':dev.taregross})
-
-         #       context.update({"dailytotal":get_total(weighbridge_name)[0][0]})
-           #     context.update({"weighbridge":weighbridge_name,"doc_type":weighbridge_doctype,"manual_entry":has_manual_entry})
-                
-          #      context.update({"dev_list":dev_tp})
-          #      context.update({"server_connected":is_url_accessible()})
-        
-        # context.update({"events_data":{"data":get_events('CRM-LEAD-2025-00002'),"num_of_data":len(get_events('CRM-LEAD-2025-00002'))}})
-        # context.update({"products_data":{"data":get_products('CRM-LEAD-2025-00003'),"num_of_data":len(get_products('CRM-LEAD-2025-00003'))}})
-        # context.update({"issues_data":{"data":get_issues('CRM-LEAD-2025-00002'),"num_of_data":len(get_issues('CRM-LEAD-2025-00002'))}})
-        # context.update({"notes_data":{"data":get_notes('CRM-LEAD-2025-00003'),"num_of_data":len(get_notes('CRM-LEAD-2025-00003'))}})
-        #context.update({"opportunities_data":{"data":get_opportunities('CRM-LEAD-2025-00001')}})
-        context.update({"activites_data":{"calls":get_cdr('CRM-LEAD-2025-00001')}})
+     
+        #context.update({"activites_data":{"calls":combine_email_with_cdr('CRM-LEAD-2025-00001')}})
         return context
      except Exception as e :
          
@@ -39,14 +26,25 @@ def get_lead_info(lead):
     products = render_products(lead)
     issues = render_issues(lead)
     notes =  render_notes(lead)
-    opportunities = str(frappe.render_template("templates/includes/opportunities_section.html", {'template_data':{"data":get_opportunities(lead)}}))
+    opportunities = str(frappe.render_template("templates/includes/opportunities_section.html", {'template_data':{"data":get_opportunities(lead,6)}}))
+    maintenance = str(frappe.render_template("templates/includes/maintenance_section.html", {'template_data':{"data":get_maintenance(lead,6)}}))
+    critical_notes=str(frappe.render_template("templates/includes/critical_lead_notes.html", {'template_data':get_critical_notes(lead)}))
+    activites=combine_email_with_cdr(lead)
+    
+    activities_section=str(frappe.render_template("templates/includes/activities_section.html",{"template_data":{"lead":lead,"num_of_data":len(activites),"calls":activites}}))
     lead=frappe.get_doc('Lead',lead)
-    return events,products,issues,notes,lead,opportunities
+    customer=None
+    if (frappe.db.exists('Customer',{"lead_name":lead.name})):
+        customer=frappe.get_doc('Customer',{"lead_name":lead.name})
+    return events,products,issues,notes,lead,opportunities,maintenance,customer,critical_notes,activities_section
 
 
-
-def get_opportunities(lead):
-    return frappe.get_all('Opportunity', filters=[['party_name','=',lead]],fields=['creation','probability','opportunity_type','name','status','owner'],order_by='creation DESC')
+def get_critical_notes(lead):
+    critical_notes=frappe.get_all('Critical Lead Notes',fields=['name'],order_by='creation desc',filters=[['lead','=', lead],['disable','=','0'],['creation','>=',frappe.utils.get_datetime()]],limit=1,pluck='name')
+    if (len(critical_notes) > 0):
+        return frappe.get_list('Critical Lead Notes',filters=[['name','in',critical_notes]],fields=['note'])[0]
+def get_opportunities(lead,limit):
+    return frappe.get_all('Opportunity', filters=[['party_name','=',lead]],fields=['creation','probability','opportunity_type','name','status','owner'],order_by='creation DESC',limit=limit)
 
 @frappe.whitelist()
 def render_products(lead):
@@ -102,7 +100,22 @@ def get_events(lead,fields,limit):
     ordered = sorted(events, key=lambda x: x['creation'],reverse=True)
     return ordered
 
+def get_maintenance(lead,limit):
+   connections=get_detailed_connections(lead)
+   maintenances=[]
+   if len(connections.get('customer')) > 0 :
+        pre_data=frappe.get_list('Maintenance Visit', filters=[['customer','in',connections.get('customer')]],pluck='name',limit=limit)
+        all_fields=['name','maintenance_type','completion_status','mntc_date','creation']
 
+        data=frappe.get_all('Maintenance Visit', filters=[['name','in',pre_data]],fields=all_fields)
+        maintenances.append(data)
+        flat_list = [obj for sublist in maintenances for obj in sublist]
+  
+        ordered = sorted(flat_list, key=lambda x: x['creation'],reverse=True)
+        return ordered
+   else:
+       return maintenances
+  
 def get_products(lead,fields,limit):
    connections=get_detailed_connections(lead)
    products=[]
@@ -215,20 +228,72 @@ def save_lead(lead):
         frappe.db.set_value("Lead", data.get("lead_id"), updates)
     else:
         doc = frappe.get_doc({
-            "doctype": "Lead",
+               "doctype": "Lead",
            "gender": data.get("gender"),
            "first_name": data.get("first_name"),
         "last_name":data.get("last_name"),
          "custom_birth_date":data.get("birth_date"),
-          "mobile_no" : data.get("mobile_no")
+          "mobile_no" : data.get("mobile_no"),
+            "company":data.get("company") ,
+            "market_segment" : data.get("market_segment")  ,
+            "job_title":data.get("job_title"),
+             "whatsapp_no" : data.get("whatsapp"),
+        "phone": data.get("phone_no"),
+        "email_id": data.get("email"),
+        "industry":data.get("industry"),
+        "territory":data.get("territory"),
+        "company_name": data.get("organization"),
         })
 
         doc.insert()
         frappe.db.commit()
+        return doc.name
 
 
-def get_cdr(lead): 
-   cdr_data=[]  
-   return get_phone_cdrs_by_cdrid('0997777073')
-   #for phone in get_lead_phone_numbers(lead):
-   #    cdr_data.append(get_phone_cdrs(1,1,phone))
+ 
+def get_emails(lead,limit):
+    import datetime
+    lead_doc=frappe.get_doc('Lead',lead)
+    values = {'email': '%'+lead_doc.email_id+'%', 'lead_name':lead_doc.name,'company':lead_doc.company,'limit':limit}
+    emails=frappe.db.sql("""
+
+    select B.sent_or_received,B.sender,B.creation,B.recipients,B.uid,B.subject,B.name from  `tabCommunication` B  
+    where B.communication_medium='Email' and  (B.recipients like  %(email)s
+    or B.sender like  %(email)s )
+    and B.company =%(company)s
+    order by creation desc
+    limit %(limit)s """,values=values, as_dict=1)
+    #emails= frappe.get_all("Communication", filters=[["communication_medium","=","Email"]],or_filters=['recipients','=',email],fields=['sent_or_received','sender','creation','recipients','uid','subject','name'],order_by='creation desc',limit=4)
+    for email in emails:
+        # 1. Change 'sent_or_received' -> 'disposition'
+        # .pop() gets the value of the old key and deletes the old key from the dict
+        email['call_type'] = email.pop('sent_or_received')
+        
+        # 2. Change 'sender' -> 'call_from'
+        email['call_from_name'] = email.pop('sender')
+        email['call_to_name'] = email.pop('recipients')
+        email['call_id'] = str(email.pop('uid'))
+        email['creation'] = email['creation'].replace(microsecond=0)
+        email['disposition'] = str(email.pop('subject'))
+        email['link']="/app/communication/"+email.pop('name')  
+    
+    return emails
+
+def combine_email_with_cdr(lead):
+    lead_doc=frappe.get_doc('Lead',lead)
+    aa=[]
+    calls=[]
+    if lead_doc.mobile_no is not None and lead_doc.mobile_no != '':
+        calls.extend(get_phone_cdrs_by_cdrid(lead_doc.mobile_no,3))
+    if lead_doc.phone is not None and lead_doc.phone != '':
+        calls.extend(get_phone_cdrs_by_cdrid(lead_doc.phone,3))
+
+        
+
+    emails=get_emails(lead,3)
+    
+    combined_timeline = emails + calls
+
+    # 4. Sort by 'creation' (Reverse=True means Newest First)
+    aa = sorted(combined_timeline, key=lambda x: x['creation'], reverse=True)
+    return aa

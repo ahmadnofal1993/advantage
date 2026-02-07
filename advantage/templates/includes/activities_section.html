@@ -1,64 +1,87 @@
 <!-- jinja -->
-<div id = "activity" class="section">
+{% if template_data %}
+
     <div class="section_header">
         <div class="section_title">
             <div class="title">
-                <span>Latest Activities</span>
+                <span> {{ _('Latest Activities') }} </span>
             </div>
             <div class="count">
-                <span>2</span>
+                <span>{{ template_data.num_of_data }}</span>
             </div>
         </div>
        
     </div>
     <div class = "section_content">
       
-        {% for group in template_data.calls | groupby('call_id')  | reverse %}
-            
-            
-            {% set first_row = group.list[0] %} 
+        {% if template_data.calls %}
         
-            <div class="content_row">
+        {% set unique_ids = [] %}
+        {% for call in template_data.calls %}
+            {% if call.call_id not in unique_ids %}
+                {% set _ = unique_ids.append(call.call_id) %}
+            {% endif %}
+        {% endfor %} 
+
+        
+        {% for uid in unique_ids %}
+            
+            
+            {% set group_items = template_data.calls | selectattr("call_id", "equalto", uid) | list %}
+            {% set first_row = group_items[0] %}
+        
+            <div class="content_row  col-sm-12">
                 
                 <!-- Left Column: Call Type (Taken from the first record of the group) -->
-                <div class="row_text content_title col-sm-2">
+                
+                <div class="row_text content_title col-sm-2" style="display: flex;flex-direction: column;">
                     <span>{{ first_row.call_type }}</span>
+                    <span style="height: 6px;"> </span>
+                    <span style="font-weight: 400;">{{  frappe.utils.pretty_date(first_row.creation) }}</span>
                 </div>
+                <!-- Right Column: Date (Taken from first record or static) -->
+                 
         
                 <!-- Middle Column: Loop through ALL details for this specific Call ID -->
-                <div class="content_description col-sm-8">
-                    {% for call in group.list %}
+                <div class="content_description col-sm-10">
+                    {% for call in group_items %}
                         <div class="row_text">
-                            <div class="col-sm-4">
-                                <span>{{ call.related_doctype_id }}</span>
+                            <div class="col-sm-3">
+                                <span>{{ call.call_from_name }}</span>
                             </div>
-                            <div class="col-sm-4">
-                                <span>{{ call.disposition }}</span>
+                            <div class="col-sm-3">
+                                <span>{{ call.creation }}</span>
                             </div>
-                            <div class="col-sm-4">
-                                <span>{{ call.talk_duration }}s</span>
+                            <div class="col-sm-3">
+                                <span>{{ call.call_to_name }}</span>
                             </div>
+                            <div class="col-sm-2">
+                                {% if call.disposition %}  <span> {% if call.link %} <a target="_blank"  href="{{ call.link }}"> {{ call.disposition }}</a>  </span>  {% endif %} {% endif %}
+                            </div>
+                            <div class="col-sm-1">
+                                {% if call.talk_duration %}  <span>{{ call.talk_duration }}s</span> {% endif %}
+                            </div>
+                            
                         </div>
                     {% endfor %}
                 </div>
         
-                <!-- Right Column: Date (Taken from first record or static) -->
-                <div class="row_text content_date col-sm-2">
-                    <!-- Note: Your data didn't have a date field, so I put a placeholder -->
-                    <span>{{  frappe.utils.pretty_date(first_row.creation)}}</span>
-                </div>
+                
         
             </div>
         {% endfor %}
-        
+        {% endif %}
+       
        
     </div>
     <div class="section_footer">
         <div class="footer_row text_allign_right">
             <div class="footer_text">
-                <span><a href="">View All</a></span>
+                <span><a target="_blank"  href="query-report/Lead%20Activites?lead={{template_data.lead}}">   {{_('View All')}} </a></span>
+                 
             </div>
         </div>
     </div>
 
-</div>
+ 
+{% endif %}

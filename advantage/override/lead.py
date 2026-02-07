@@ -1,0 +1,73 @@
+
+import frappe
+
+from erpnext.crm.doctype.lead.lead import Lead
+from advantage.utils import get_detailed_connections,normalize_syria_number,update_cdrs_data,update_emails_data
+
+class AdvantageLead(Lead):
+    def on_update(self):
+    #    for link in frappe.get_all('Dynamic Link', filters=[['link_doctype','=','Lead'],['link_name','=',self.name]],pluck='parent'):
+    #         for contact in frappe.get_all('Contact Phone', filters=[['parent','=',link],["phone","=",self.mobile_no]],fields=['*']):
+    #             contact_phone=frappe.get_doc('Contact Phone',{'parent':link,'phone':self.mobile_no})
+    #             contact_phone.db_set('is_primary_mobile_no',True,False,False,True)
+      
+        self.db_set('phone_ext',normalize_syria_number(self.phone_ext),False,False,True)
+        self.db_set('phone',normalize_syria_number(self.phone),False,False,True)
+        self.db_set('whatsapp_no',normalize_syria_number(self.whatsapp_no),False,False,True)
+        self.db_set('mobile_no',normalize_syria_number(self.mobile_no),False,False,True)
+        self.db_set('custom_additional_mobile',normalize_syria_number(self.custom_additional_mobile),False,False,True)
+        self.db_set('custom_additional_phone',normalize_syria_number(self.custom_additional_phone),False,False,True)
+        
+        connections=get_detailed_connections(self.name)
+        if len(connections.get('opportunities')) > 0 :
+            for oppor in connections.get('opportunities'):
+                opportunity=frappe.get_doc('Opportunity',oppor)
+                opportunity.db_set('custom_additional_mobile',normalize_syria_number(self.custom_additional_mobile),False,False,True)       
+                opportunity.db_set('custom_additional_phone',normalize_syria_number(self.custom_additional_phone),False,False,True)      
+                opportunity.db_set('contact_email',self.email_id,False,False,True)      
+                opportunity.db_set('contact_mobile',normalize_syria_number(self.mobile_no),False,False,True)      
+                opportunity.db_set('phone',normalize_syria_number(self.phone),False,False,True)    
+                opportunity.db_set('whatsapp',normalize_syria_number(self.whatsapp_no),False,False,True)     
+                opportunity.db_set('phone_ext',normalize_syria_number(self.phone_ext),False,False,True)       
+        if  len(connections.get('customer')) > 0 :
+            for cust in connections.get('customer'):
+                customer=frappe.get_doc('Customer',cust)
+                customer.db_set('custom_additional_phone',normalize_syria_number(self.custom_additional_mobile),False,False,True)       
+                customer.db_set('custom_phone',normalize_syria_number(self.phone),False,False,True)    
+                customer.db_set('custom_additional_mobile',normalize_syria_number(self.custom_additional_mobile),False,False,True)  
+                customer.db_set('custom_mobile',normalize_syria_number(self.mobile_no),False,False,True)   
+                customer.db_set('custom_email',self.email_id,False,False,True)       
+        unique_job_name = f"update_cdrs_data_{self.name}"                
+        frappe.enqueue(
+									    update_cdrs_data, # python function or a module path as string
+										queue="default", # one of short, default, long
+										timeout=None, # pass timeout manually
+										is_async=True, # if this is True, method is run in worker
+										now=False, # if this is True, method is run directly (not in a worker) 
+										job_id=unique_job_name, # specify a job name
+                                        job_name=unique_job_name,
+										enqueue_after_commit=False, # enqueue the job after the database commit is done at the end of the request
+										at_front=False, # put the job at the front of the queue
+										lead=self.name
+								
+						)
+        unique_job_name = f"update_emails_data_{self.name}"   
+        frappe.enqueue(
+									    update_emails_data, # python function or a module path as string
+										queue="default", # one of short, default, long
+										timeout=None, # pass timeout manually
+										is_async=True, # if this is True, method is run in worker
+										now=False, # if this is True, method is run directly (not in a worker) 
+										job_id=unique_job_name, # specify a job name
+                                        job_name=unique_job_name,
+										enqueue_after_commit=False, # enqueue the job after the database commit is done at the end of the request
+										at_front=False, # put the job at the front of the queue
+										lead=self.name
+								
+						)
+        
+                
+                
+
+
+

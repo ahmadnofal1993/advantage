@@ -2,45 +2,46 @@
 
 <!-- jinja -->
 <div class="content page-container Lead_Information_page">
-    <div   class="container page-body">
+    <div   class="container custom-page-body">
         <div id="left_side" class="side_panel">
             <div id = "events" class="section">
-            {{ frappe.render_template('templates/includes/event_section.html', {'template_data':events_data}) }}
+             {{ frappe.render_template('templates/includes/event_section.html', {'template_data':events_data}) }}  
             </div>
-            <!----------------------------------------------------- -->
+            
             <div id = "product" class="section">
-            {{ frappe.render_template('templates/includes/product_section.html', {'template_data':products_data}) }}
+              {{ frappe.render_template('templates/includes/product_section.html', {'template_data':products_data}) }} 
             </div>
         </div>
         <div class="main_panel">
             <div id = "main" class="section">
                 <div class="main_section">
-                    <div class="form-tabs-list">
+                    <div class="custom-form-tabs-list">
                         
-                        <ul class="nav form-tabs">
+                        <ul class="nav custom-form-tabs">
                             <span  id="expand" class="sidebar-toggle-icon">
                                 <svg class="es-icon es-line  icon-md"  aria-hidden="true">
                                     <use id="expand_icon"  href="#es-line-sidebar-expand"></use>
                                 </svg>
                             </span>
-                            <li class="nav-item show">
-                                <button class="nav-link active">
+                            
+                            <li class="custom-nav-item show">
+                                <button class="custom-nav-link active">
                                     {{_('Lead') }} 
                                 </button>
                             </li>
-                            <li class="nav-item show">
-                                <button class="nav-link">
+                            <li class="custom-nav-item show">
+                                <button class="custom-nav-link">
                                     {{_('Opportunities') }} 
                                 </button>
                             </li>
-                            <li class="nav-item show">
-                                <button class="nav-link">
+                            <li id="maintenance_tab" class="custom-nav-item show hidden">
+                                <button class="custom-nav-link">
                                     {{_('Maintenance') }} 
                                 </button>
                             </li>
                         </ul>
                         <div class="info_list">
-                            <div class="info_item">
+                                                        <div class="info_item">
                                 <div class="info_button nav-link" href="#">
                                     <div id="lead_owner" class="info_text indicator-pill no-indicator-dot whitespace-nowrap white hidden">
                                        
@@ -49,7 +50,7 @@
                             </div>
                             <div class="info_item">
                                 <div class="info_button nav-link" href="#">
-                                    <div id="status"  class="info_text indicator-pill no-indicator-dot whitespace-nowrap red hidden">
+                                    <div id="status"  class="info_text indicator-pill no-indicator-dot whitespace-nowrap  hidden">
                                         
                                     </div>
                                 </div>
@@ -61,20 +62,32 @@
                                        
                                     </div>
                                 </div>
+                                                           
                             </div>
+                            
+                            
                         </div>
+                    
+                        
                     </div>
                     
-                    <div class="popup_notes_container">
-                        <div class="popup_notes_note">
-                            <div class="popup_notes_text">
-                                <span>This is a note to call center for this specific lead</span>
-                            </div>
-                        </div>
+                    <div id="critical_lead_notes" class="popup_notes_container">
+                         {{ frappe.render_template('templates/includes/critical_lead_notes.html', {'template_data':critical_note_data}) }}  
+                        
                     </div>
                     <div class="form-tab-content tab-content">
-                        <!---Tab form------------------------------------------------------------------------------------------------------>
+                        
+                        
                         <div class="tab-pane fade active show" id="main-lead" role="tabpanel">
+                            <div class="custom-form-tabs-list" style="justify-content: flex-end;">  
+                                <div id="save_button" class="hidden" style="padding: 10px;">
+                                    <button data-label="add-opportunity" class="btn btn-primary btn-sm " style="padding: 2px 8px;border-radius: 6px;">
+                                        <div style="padding: 0px 6px;">
+                                            {{ _('Save') }} 
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
                             <form>
                                 <!---Section----------------------------------------------------------------------------------------------->
                                 <div class="row form-section card-section visible-section" data-fieldname="__section_lead_status">
@@ -191,24 +204,33 @@
                         </div>
                         <!---Tab form------------------------------------------------------------------------------------------------------>
                         <div class="tab-pane fade active show" id="main-opportunity" role="tabpanel">
+                            
                             <form>
-                                {{ frappe.render_template('templates/includes/opportunities_section.html', {'template_data':opportunities_data}) }}
+                                
+                            {{ frappe.render_template('templates/includes/opportunities_section.html', {'template_data':opportunities_data}) }}  
+                                
+                            </form>
+                        </div>
+                        <div class="tab-pane fade active show" id="main-maintenance" role="tabpanel" style="display: none;">
+                            <form>
+                                 {{ frappe.render_template('templates/includes/maintenance_section.html', {'template_data':maintenance_data}) }}  
                                 
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {{ frappe.render_template('templates/includes/activities_section.html', {'template_data':activites_data}) }}
+            <div id = "activity" class="section">
+             {{ frappe.render_template('templates/includes/activities_section.html', {'template_data':activites_data}) }}  
+            </div>
         </div>
         <div class="side_panel">
             <div id = "issues" class="section">
-            {{ frappe.render_template('templates/includes/issue_section.html', {'template_data':issues_data}) }}
+             {{ frappe.render_template('templates/includes/issue_section.html', {'template_data':issues_data}) }} 
             </div>
             <!------------------------------------------------------------------------------------------------------->
             <div id = "notes" class="section">
-            {{ frappe.render_template('templates/includes/note_section.html', {'template_data':notes_data}) }}
+            {{ frappe.render_template('templates/includes/note_section.html', {'template_data':notes_data}) }}  
             </div>
         </div>
     </div>

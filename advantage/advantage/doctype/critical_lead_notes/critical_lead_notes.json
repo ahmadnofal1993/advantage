@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{company_abbr}-{YY}{######}",
+ "creation": "2026-01-18 20:13:12.240592",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_swxe",
+  "amended_from",
+  "section_break_ttrz",
+  "company",
+  "company_abbr",
+  "column_break_dzdm",
+  "lead",
+  "disable",
+  "section_break_smhq",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_swxe",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Critical Lead Notes",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_ttrz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "link_filters": "[[\"Company\",\"company_name\",\"=\",\"eval:frappe.defaults.get_default(\\\"company\\\")\"]]",
+   "options": "Company"
+  },
+  {
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "link_filters": "[[\"Lead\",\"company\",\"=\",\"eval:doc.company\"]]",
+   "options": "Lead"
+  },
+  {
+   "fetch_from": "company.abbr",
+   "fieldname": "company_abbr",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Company Abbr"
+  },
+  {
+   "fieldname": "column_break_dzdm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "disable",
+   "fieldtype": "Check",
+   "label": "Disable"
+  },
+  {
+   "fieldname": "section_break_smhq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Small Text",
+   "label": "Note"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-18 20:27:16.858999",
+ "modified_by": "Administrator",
+ "module": "Advantage",
+ "name": "Critical Lead Notes",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CRM Sales Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

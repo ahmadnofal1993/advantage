@@ -9,7 +9,7 @@ frappe.pages['lead-overview'].on_page_load = function(wrapper) {
 	//$(frappe.render_template("lead_overview")).appendTo(page.main);
 
 	// Hide Page Title
-    //page.wrapper.find('.page-head').hide();
+    //
 
 	/*page.wrapper.find('.page-body').css({
         'max-width': '100% !important',
@@ -58,7 +58,7 @@ frappe.pages['lead-overview'].on_page_load = function(wrapper) {
             lead_summary.setup_browser_guard();
             //lead_summary.mobile_no_field.set_disabled(true);
         }
-        else{
+        else if ( route[1] != "NA" ) {
         lead_summary.lead_field.set_value(route[1]);
         lead_summary.refresh_data(route[1],wrapper);
         }
@@ -82,14 +82,15 @@ LeadOverview = class {
         this.has_unsaved_changes=false;
         this.lead_field=null;
         this.wrapper = wrapper;
+        this.is_cleared=false;
         this.last_lead_value = null; 
         this.page = frappe.ui.make_app_page({
             parent: this.wrapper,
             title: __('Lead Overview'),
             single_column: true
         });
-       
-         
+       this.page.wrapper.find('.page-head').hide();
+         this.customer=null;
         this.is_dirty=false;
         // 2. Render Content
         this.render();
@@ -209,14 +210,18 @@ LeadOverview = class {
             { df:
                 { fieldname: 'mobile_num',
                   label:__('Mobile Number'),
-                  fieldtype: 'Int',
-                  reqd:'1'
+                  fieldtype: 'Data',
+                  reqd:'1',
+                  
                   
                 }, 
                 parent: $(this.wrapper).find("#mobile_num"), 
                 
                 render_input: true       
             });
+            
+            
+         
             this.phone_no_field=frappe.ui.form.make_control(
                 { df:
                     { fieldname: 'phone_num',
@@ -270,7 +275,13 @@ LeadOverview = class {
                     label:__('Territory'),
                     fieldtype: 'Link', 
                     options: 'Territory' ,
-                    
+                    get_query: function() {
+                        return {
+                            filters: {
+                                is_group : "0"
+                            }
+                        };
+                    }
                     
                 }, 
                 parent: $(this.wrapper).find("#territory"), 
@@ -336,26 +347,69 @@ LeadOverview = class {
     render() {
         // Example content
         $(frappe.render_template("lead_overview")).appendTo(this.page.main);
-    
-
+      
+       
+        
     }
 
     setup_actions() {
         // Add the primary button to the top right
         // We use arrow function () => to keep 'this' bound to the class
-        this.page.set_primary_action(__('Save'), () =>this.add_opportunities(this.lead_field.get_value()) );
+        $(this.wrapper).find("#save_button").removeClass("hidden");
+        $(this.wrapper).find("#save_button").off('click').on('click', () => {
+            this.save_data();
+        });
+        //this.page.set_primary_action(__('Save'), () =>this.add_opportunities(this.lead_field.get_value()) );
         //this.save_data()
     }
-
-    add_opportunities(lead)
+    add_mintenance()
+    {
+         
+        if (this.lead_field.get_value() != "" && this.lead_field.get_value() != undefined )
+        {
+            if (this.customer != null)
+            {
+                 
+                let party_name=this.customer.name
+                frappe.new_doc("Maintenance Visit"); 
+                frappe.ui.form.on("Maintenance Visit", 
+                { onload: function(frm) { 
+                
+                    
+                    frm.set_value("customer", party_name);
+                    frm.set_df_property("customer", "read_only", 1);
+            
+                
+                    
+                
+                
+                
+                }
+                
+                });
+            }
+        
+        }
+    }
+    add_opportunities()
     {   
-        console.log(lead);
+         
+       
+        if (this.lead_field.get_value() != "" && this.lead_field.get_value() != undefined )
+        {
+            let party_name=this.lead_field.get_value();
+            let type="Lead";
+            if (this.customer != null)
+            {
+                type="Customer";
+                party_name=this.customer.name
+            }
         frappe.new_doc("Opportunity"); 
         frappe.ui.form.on("Opportunity", 
         { onload: function(frm) { 
-            console.log('aaaaaaaaaaaaaaaaaaaaaaa');
-            frm.set_value("opportunity_from", "Lead").then(() => {
-                frm.set_value("party_name", lead).then(() => {
+           
+            frm.set_value("opportunity_from", type).then(() => {
+                frm.set_value("party_name", party_name).then(() => {
                     frm.set_df_property("party_name", "read_only", 1);
                     frm.refresh_field("party_name"); 
                 }); 
@@ -364,30 +418,30 @@ LeadOverview = class {
      
           
             
+            
            
-           console.log(frm.doc.party_name);
-            frm.set_df_property("opportunity_type", "reqd", 1);
-           
-           
-        } 
-    });
+        }
+         
+        });
+        }
     }
     save_data()
     {
+        let me=this;
+        console.log('save');
         if ( this.has_unsaved_changes == true )
         {
-        
-            if (this.first_name_field.get_value() == undefined || this.first_name_field.get_value()=='' )
-            {
-                frappe.throw("First Name is Mandatory");
-            }
-            if (this.last_name_field.get_value() == undefined || this.last_name_field.get_value()=='' )
-            {
-                frappe.throw("Last Name is Mandatory");
-            }
-            if (this.mobile_no_field.get_value() == undefined || this.mobile_no_field.get_value()=='' )
-            {
-                frappe.throw("Mobile Number is Mandatory");
+            const mandatory_fields = [
+                { field: this.first_name_field, label: __('First Name') },
+                { field: this.last_name_field,  label: __('Last Name') },
+                { field: this.mobile_no_field,  label: __('Mobile') }
+            ];
+            
+            for (let item of mandatory_fields) {
+                if (!item.field.get_value()) {
+                    frappe.throw(__('{0} is mandatory', [item.label]));
+                    // The script stops here immediately after the first error
+                }
             }
         let lead = { lead_id: this.lead_field.get_value() || "NA", 
         market_segment: this.market_segment_field.get_value(), 
@@ -415,7 +469,11 @@ LeadOverview = class {
             callback: function(r) {
                 if (r.message) {
                     console.log(r.message); 
-                    
+                   
+                    if (r.message != undefined )
+                    {
+                        me.lead_field.set_value(r.message );
+                    }
                 }
             }
         });
@@ -428,7 +486,7 @@ LeadOverview = class {
         this.page.set_indicator('', '');
         frappe.show_alert({message: 'Saved Successfully', indicator: 'green'});
         this.empty_fields(this.wrapper);
-        this.lead_field.set_value('');
+        this.lead_field.set_value(null);
      }
      else 
      {
@@ -447,6 +505,7 @@ LeadOverview = class {
                 // Frappe keeps pages in the DOM even when you navigate away.
                 if ($(this.wrapper).is(':visible')) {
                     this.save_data();
+                   
                 }
                 
                 return false;
@@ -457,7 +516,7 @@ LeadOverview = class {
     
     refresh_data(ff,wrapper){
         let me=this;
-        console.log(ff);
+   
         if (ff.value != "")
         {
             frappe.call({
@@ -468,18 +527,19 @@ LeadOverview = class {
                 callback: function(r) {
                     if (r.message) {
                         // Render template with new data
-                       
-                       console.log("Start Refresh");
-                       console.log( me.is_programmatic_update);
+                        console.log(r.message[9]) ;
+                      
                         me.is_programmatic_update=true;
-                        console.log( me.is_programmatic_update);
+                       
                         // Update DOM
                         $(wrapper).find("#events").html(r.message[0]);
                         $(wrapper).find("#product").html(r.message[1]);
                         $(wrapper).find("#issues").html(r.message[2]);
                         $(wrapper).find("#notes").html(r.message[3]);
-                       
+                        $(wrapper).find("#activity").html(r.message[9]);
+                        $(wrapper).find('#critical_lead_notes').html(r.message[8]);
                         $(wrapper).find("#main-opportunity").html(r.message[5]);
+                        $(wrapper).find("#main-maintenance").html(r.message[6]);
                         me.birth_date_field.set_value(r.message[4].custom_birth_date);
                         me.market_segment_field.set_value(r.message[4].market_segment);
                         me.gender_field.set_value(r.message[4].gender);
@@ -496,7 +556,8 @@ LeadOverview = class {
                         me.organization_field.set_value(r.message[4].company_name);
                         $(wrapper).find("#full_name").val(r.message[4].lead_name);
                         me.mobile_no_field.set_value(r.message[4].mobile_no);
-                        
+                        me.customer=r.message[7];
+                        console.log(me.customer);
                         me.whatsapp_field.set_value(r.message[4].whatsapp_no);
                         
                      
@@ -506,8 +567,37 @@ LeadOverview = class {
                         $(wrapper).find("#status").removeClass("hidden");
                         $(wrapper).find("#lead_owner").removeClass("hidden");
                         
-                        $(wrapper).find("#qualification_status").text(r.message[4].qualification_status);
-                        $(wrapper).find("#status").text(r.message[4].status);
+                        $(wrapper).find("#qualification_status").text(__(r.message[4].qualification_status));
+                        $(wrapper).find("#status").text(__(r.message[4].status));
+                      
+                        $(wrapper).find("#add_opportunity_button").removeClass("hidden");
+                        $(wrapper).find("#add_opportunity_button").off('click').on('click', () => {
+                           
+                             me.add_opportunities();
+                             
+                        }); 
+                        $(wrapper).find("#add_mintenance_button").removeClass("hidden");
+                        $(wrapper).find("#add_mintenance_button").off('click').on('click', () => {
+                            
+                             me.add_mintenance();
+                             
+                        }); 
+                        
+                      
+                                     
+                        $(wrapper).find("#status").addClass('gray');
+                        if (r.message[4].status=="Open")
+                        {
+                            $(wrapper).find("#status").removeClass('gray');
+                            $(wrapper).find("#status").addClass('red');
+                        }
+                        if (r.message[4].status=="Converted")
+                        {
+                            $(wrapper).find("#maintenance_tab").removeClass("hidden");
+                            $(wrapper).find("#status").removeClass('gray');
+                            $(wrapper).find("#status").addClass('green');
+                        }
+                         
                         $(wrapper).find("#lead_owner").text(r.message[4].owner);
                         setTimeout(() => {
                             me.is_programmatic_update = false; // Unlock
@@ -822,7 +912,9 @@ LeadOverview = class {
         $(wrapper).find("#issues").empty();
         $(wrapper).find("#notes").empty();    
         $(wrapper).find("#main-opportunity").empty();
-
+        $(wrapper).find("#critical_lead_notes").empty();
+        $(wrapper).find("#activity").empty();
+        $(wrapper).find("#main-maintenance").empty();
         me.market_segment_field.set_value('');
         me.industry_field.set_value('');
         
@@ -862,7 +954,17 @@ LeadOverview = class {
 
         $(wrapper).find("#qualification_status").addClass("hidden");
         $(wrapper).find("#status").addClass("hidden");
+        $(wrapper).find("#status").removeClass("red");
+        $(wrapper).find("#status").removeClass("gray");
+        $(wrapper).find("#status").removeClass("green");
         $(wrapper).find("#lead_owner").addClass("hidden");
+        $(wrapper).find("#maintenance_tab").addClass("hidden");
+        $(wrapper).find("#save_button").addClass("hidden");
+        $(wrapper).find("#add_opportunity_button").addClass("hidden");
+        $(wrapper).find("#add_mintenance_button").addClass("hidden");
+        
+      
+        
         
     }
     async init(wrapper) {  
@@ -925,43 +1027,48 @@ LeadOverview = class {
               change: frappe.utils.debounce(  function() {    // Event handler
                 // code on change
                 let current_value = this.get_value();
-                    console.log("prev value");
-                    console.log(me.last_lead_value);
+                 
+                    if (me.is_cleared==true)
+                    {
+                        me.is_cleared=false;
+                        me.lead_field.set_value(null);
+                        return;
+                    }
                 // 2. THE FIX: Compare current value with the last processed value
-                if (current_value === me.last_lead_value) {
-                    console.log("Duplicate trigger ignored.");
-                    return; // STOP HERE if value hasn't changed
-                }
-                
+                if (me.lead_field.$input.val() != "") {
                
-                console.log(current_value);
-                console.log(current_value.length);
-                if (current_value.length > 1 ) {
-                    me.last_lead_value=current_value;
-                    // Case A: User selected a Lead
-                    console.log("clear indicator");
-                    me.page.set_indicator("", "");
                   
-                      me.refresh_data(this.value,wrapper);
+                    if (current_value.length > 1 ) {
+                        me.last_lead_value=current_value;
+                        // Case A: User selected a Lead
                       
-                    me.has_unsaved_changes=false;
-                    
-                } 
-             
-                else {
-                    // Case B: User CLEARED the field (Clicked X)
-                   
-                     
-                    me.empty_fields(wrapper);
-                    me.page.set_indicator("", "");
-                    // You must explicitly clear your data here
-                    // For example:
-                    
-                    // OR call a clear function:
-                    // me.clear_data(wrapper);
+                        me.page.set_indicator("", "");
+                      
+                          me.refresh_data(this.value,wrapper);
+                          
+                        me.has_unsaved_changes=false;
+                        
+                    } 
+                 
+                       
                 }
-                   
-            },200)
+                else {
+                    
+                
+                        // Case B: User CLEARED the field (Clicked X)
+                       
+                         
+                        me.empty_fields(wrapper);
+                        me.page.set_indicator("", "");
+                        // You must explicitly clear your data here
+                        // For example:
+                        
+                        // OR call a clear function:
+                        // me.clear_data(wrapper);
+                    
+                    return;
+                }
+               },100 )
             }, 
             parent: $(me.wrapper).find("#lead"), 
             
@@ -971,33 +1078,39 @@ LeadOverview = class {
             // 1. Optional: Ensure the value is actually cleared in the model
             
           //  me.empty_fields(wrapper);
-            me.lead_field.set_value(''); 
+           
             // 2. Run your clear function immediately
             console.log("X button pressed - Immediate Trigger");
-          
-            
-            me.empty_fields(wrapper)
+          me.is_cleared=true;
+            me.lead_field.set_value(null);
+             me.empty_fields(wrapper); 
+           
         });
         
       //-------------------------------------------<end of add Lead Link Field  > ---------------------------
       
-      $(".nav-item .nav-link").on("click", function() {
+      $(".custom-nav-item .custom-nav-link").on("click", function() {
         // Toggle active class
-        $(".nav-item .nav-link").removeClass("active");
+        $(".custom-nav-item .custom-nav-link").removeClass("active");
         $(this).addClass("active");
     
         // Update content
         let text = $(this).text().trim();
-        if (text === "Lead") {
+        if (text === "Lead" || text==='عميل محتمل') {
             $(me.wrapper).find("#main-lead")[0].style.display = "";
             $(me.wrapper).find("#main-opportunity")[0].style.display = "none";
+            $(me.wrapper).find("#main-maintenance")[0].style.display = "none";
+           
             
-        } else if (text === "Opportunities") {
+        } else if (text === "Opportunities" || text ==='الفرص') {
             $(me.wrapper).find("#main-lead")[0].style.display = "none";
             $(me.wrapper).find("#main-opportunity")[0].style.display = "";
+            $(me.wrapper).find("#main-maintenance")[0].style.display = "none";
             
-        } else if (text === "Maintenance") {
-           
+        } else if (text === "Maintenance" || text ==='الصيانة' ) {
+            $(me.wrapper).find("#main-lead")[0].style.display = "none";
+            $(me.wrapper).find("#main-opportunity")[0].style.display = "none";
+            $(me.wrapper).find("#main-maintenance")[0].style.display = "";
         }
     });
     

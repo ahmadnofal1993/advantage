@@ -1,18 +1,16 @@
 <!-- jinja -->
 {% if template_data %}
 {% set status_colors = {
-    'Open': 'red',
-    'Quotation': 'orange',
-    'Converted': 'green',
-    'Closed': 'green',
-    'Lost': 'gray',
-    'Replied': 'gray'
+    'Partially Completed': 'red',
+    
+    'Fully Completed': 'green',
+   
 } %}
 <div class="custom-form-tabs-list" style="justify-content: flex-end;">  
-    <div   style="padding: 10px;">
-        <button id="add_opportunity_button" data-label="add-opportunity" class="btn btn-primary btn-sm" style="padding: 2px 8px;border-radius: 6px;">
+    <div style="padding: 10px;">
+        <button id="add_mintenance_button" data-label="add-mintenance" class="btn btn-primary btn-sm hidden" style="padding: 2px 8px;border-radius: 6px;">
             <div style="padding: 0px 6px;">
-                {{ _('Add Opportunity') }} 
+                {{ _('Add Maintenance Visit') }} 
             </div>
         </button>
     </div>
@@ -21,18 +19,15 @@
     <div class="frappe-list">
         <header class="level list-row-head text-muted">
             <div class="level-left list-header-subject">
-                <div class="col-sm-4 ellipsis hidden-xs">
+                <div class="col-sm-5 ellipsis hidden-xs">
                     <span>{{ _('ID') }} </span>
                 </div>
                 <div class="col-sm-2 ellipsis hidden-xs">
                     <span>{{ _('Type') }} </span>
                 </div>
                 <div class="col-sm-3 ellipsis hidden-xs">
-                    <span> {{ _('Owner') }} </span>
-                </div>
-                <div class="col-sm-1 ellipsis hidden-xs">
-                    <span>%</span>
-                </div>
+                    <span> {{ _('Status') }} </span>
+                </div>               
                 <div class="col-sm-2 ellipsis hidden-xs">
                     <span>{{ _('Date') }}  </span>
                 </div>
@@ -45,28 +40,27 @@
 
         
                 {% if template_data|length>0 %}
+                
                 {% for rec in template_data.data %}
-                {% set color = status_colors.get(rec.status, 'gray') %}
+                {% set color = status_colors.get(rec.completion_status, 'gray') %}
                 <div class="list-row-container">
                     <div class="level list-row">
-                        <div class="col-sm-4 ellipsis hidden-xs">
+                        <div class="col-sm-5 ellipsis hidden-xs">
                             <span class="ellipsis">
-                                <a class="filterable ellipsis" target="_blank" href="/app/opportunity/{{ rec.name}}">
+                                <a class="filterable ellipsis" target="_blank" href="/app/maintenance-visit/{{ rec.name}}">
                                     {{rec.name}}
                                 </a>
-                                <span   class="indicator-pill no-indicator-dot whitespace-nowrap  {{ color }}">{{rec.status}}</span>
+                                
                             </span>
                         </div>
                         <div class="col-sm-2 ellipsis hidden-xs">
-                            <span>{{  _(rec.opportunity_type)}}</span>
+                            <span>{{  _(rec.maintenance_type)}}</span>
                         </div>
                         
                         <div class="col-sm-3 ellipsis hidden-xs">
-                            <span>{{rec.owner}}</span>
+                            <span class="indicator-pill no-indicator-dot whitespace-nowrap  {{ color }}">{{ _(rec.completion_status)}}</span>
                         </div>
-                        <div class="col-sm-1 ellipsis hidden-xs">
-                            <span>{{rec.probability}}</span>
-                        </div>
+                     
                         <div class="col-sm-2 ellipsis hidden-xs">
                             <span>{{ frappe.utils.pretty_date(rec.creation) }} </span>
                         </div>

@@ -10,5 +10,9 @@ frappe.query_reports["Lead Issues"] = {
             "options": "Lead",
             
         },
-	]
+	],"onload": function(report) {
+        
+        report.refresh();
+        
+       }
 };

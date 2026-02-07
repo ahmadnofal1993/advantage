@@ -2,6 +2,48 @@ import frappe
 from frappe.permissions import AUTOMATIC_ROLES
 import datetime
 
+def update_cdrs_data(lead):
+    lead_doc=frappe.get_doc('Lead',lead)
+    if ( len (frappe.get_all("PBX CDRs",filters=[['related_doctype_id','!=',lead_doc.name]],or_filters=[[ "call_from_number","=", lead_doc.phone_ext],[ "call_from_number","=", lead_doc.phone],[ "call_from_number","=", lead_doc.whatsapp_no],[  "call_from_number","=",lead_doc.mobile_no],["call_from_number","=",lead_doc.custom_additional_mobile],[  "call_from_number","=", lead_doc.custom_additional_phone]],pluck='name'))  > 0):
+            for a in frappe.get_all("PBX CDRs",filters=[['related_doctype_id','!=',lead_doc.name]],or_filters=[[ "call_from_number","=", lead_doc.phone_ext ],[ "call_from_number","=", lead_doc.phone],[ "call_from_number","=", lead_doc.whatsapp_no],[  "call_from_number","=",lead_doc.mobile_no],["call_from_number","=",lead_doc.custom_additional_mobile],[  "call_from_number","=", lead_doc.custom_additional_phone]],pluck='name') :
+                cdr=frappe.get_doc("PBX CDRs",a)
+                cdr.db_set('related_doctype_id',lead_doc.name,False,False,True)   
+    if ( len (frappe.get_all("PBX CDRs",filters=[['related_doctype_id','!=',lead_doc.name]],or_filters=[[ "call_to_number","=", lead_doc.phone_ext],[ "call_to_number","=", lead_doc.phone],[ "call_to_number","=", lead_doc.whatsapp_no],[  "call_to_number","=",lead_doc.mobile_no],["call_to_number","=",lead_doc.custom_additional_mobile],[  "call_to_number","=", lead_doc.custom_additional_phone]],pluck='name'))  > 0):
+            for a in frappe.get_all("PBX CDRs",filters=[['related_doctype_id','!=',lead_doc.name]],or_filters=[[ "call_to_number","=", lead_doc.phone_ext ],[ "call_to_number","=", lead_doc.phone],[ "call_to_number","=", lead_doc.whatsapp_no],[  "call_to_number","=",lead_doc.mobile_no],["call_to_number","=",lead_doc.custom_additional_mobile],[  "call_to_number","=", lead_doc.custom_additional_phone]],pluck='name') :
+                cdr=frappe.get_doc("PBX CDRs",a)
+                cdr.db_set('related_doctype_id',lead_doc.name,False,False,True)                   
+
+@frappe.whitelist()
+def get_sender_email(user=None):
+    if not user:
+        user = frappe.session.user
+    company = frappe.defaults.get_user_default("company")
+    if len(frappe.get_all('Email Account',filters=[['company','=',company],['enable_outgoing','=','1']],pluck='email_id')) > 0 :
+        return frappe.get_all('Email Account',filters=[['company','=',company],['enable_outgoing','=','1']],pluck='email_id')
+
+def update_emails_data(lead):
+    lead_doc=frappe.get_doc('Lead',lead)
+    values = {'email': '%'+lead_doc.email_id+'%', 'lead_name':lead_doc.name,'company':lead_doc.company}
+    
+    data=frappe.db.sql("""
+
+    select B.name from  `tabCommunication` B  
+    where (B.recipients like  %(email)s
+    or B.sender like  %(email)s )
+    and B.company =%(company)s 
+    and B.name not in ( select parent from  `tabCommunication Link`  TT where     TT.link_doctype='Lead'
+    and TT.link_name=%(lead_name)s )
+                """,values=values, as_dict=1)
+    for r in data :
+        communication=frappe.get_doc('Communication',r.name)
+        contact=communication.append("timeline_links", {})
+            
+        
+        contact.link_name=lead_doc.name
+        contact.link_doctype=lead_doc.doctype
+            
+        contact.save(ignore_permissions=True)
+    frappe.db.commit()
 
 def get_permission_query_conditions(user):
     if not user:
@@ -19,6 +61,13 @@ def get_permission_query_conditions(user):
         return """ ( `tabTask`.name in (select reference_name from `tabToDo` where `tabToDo`.reference_type='Task' and `tabToDo`.status !='Cancelled' and   (`tabToDo`.allocated_to = {user} or `tabToDo`.assigned_by = {user}))) """.format(
             user=frappe.db.escape(user)
         )
+
+def normalize_syria_number(number):
+    import re
+    if (number is not None and number != ''):
+        return re.sub(r'^0(?![0])', '00963', number)
+    else:
+        return 
 
 
 def has_permission(doc, ptype="read", user=None):

@@ -11,4 +11,9 @@ frappe.query_reports["Lead Product"] = {
             
         },
 	]
+    ,"onload": function(report) {
+        
+        report.refresh();
+        
+       }
 };

@@ -41,7 +41,11 @@ app_license = "mit"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
-
+app_include_js = [
+	"/assets/advantage/js/utils.bundle.js",
+	"/assets/advantage/js/lib/datepicker.ar.js",
+    "/assets/advantage/js/communication_override.js"
+]
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -55,7 +59,7 @@ app_license = "mit"
 
 # Home Pages
 # ----------
-
+doctype_js ={"Lead": "public/js/lead.js" ,"Opportunity":"public/js/opportunity.js"}
 # application home page (will override Website Settings)
 # home_page = "login"
 
@@ -71,9 +75,11 @@ has_permission = {
  	"Task": "advantage.utils.has_permission",
 	
  }
-#override_doctype_class = {
-#	"Contact": "advantage.override.contact.AdvantageContact",
-#}
+override_doctype_class = {
+	#"Contact": "advantage.override.contact.AdvantageContact",
+    	"Lead": "advantage.override.lead.AdvantageLead",
+    "Customer":"advantage.override.customer.AdvantageCustomer"
+}
 # Generators
 # ----------
 
