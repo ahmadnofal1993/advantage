@@ -20,7 +20,7 @@ app_license = "mit"
 # 		"has_permission": "advantage.api.permission.has_app_permission"
 # 	}
 # ]
-
+fixtures = [  {"dt": "Custom Field", "filters": [["Module", "in", ["Advantage"]]]}, {"dt": "Property Setter"} ]
 # Includes in <head>
 # ------------------
 

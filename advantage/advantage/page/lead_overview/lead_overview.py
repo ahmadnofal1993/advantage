@@ -34,8 +34,9 @@ def get_lead_info(lead):
         maintenance = str(frappe.render_template("templates/includes/maintenance_section.html", {'template_data':{"data":get_maintenance(lead,6)}}))
         critical_notes=str(frappe.render_template("templates/includes/critical_lead_notes.html", {'template_data':get_critical_notes(lead)}))
         activites=combine_email_with_cdr(lead)
-        
-        activities_section=str(frappe.render_template("templates/includes/activities_section.html",{"template_data":{"lead":lead,"num_of_data":len(activites),"calls":activites}}))
+        activities_section=None
+        if activites is not None:
+            activities_section=str(frappe.render_template("templates/includes/activities_section.html",{"template_data":{"lead":lead,"num_of_data":len(activites),"calls":activites}}))
         lead=frappe.get_doc('Lead',lead)
         customer=None
         if (frappe.db.exists('Customer',{"lead_name":lead.name})):
